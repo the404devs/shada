@@ -30,6 +30,7 @@ function dayDragStart(e) {
 function generateTable() {
 	const toby = $('div#render-target');
 	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 	weekdays.forEach(weekday => {
 		const headerElem = document.createElement('div');
@@ -39,7 +40,7 @@ function generateTable() {
 	});
 	let date = new Date(`${year}-${month}-01`);
 
-	$("#month-year").textContent = date.toUTCString().split(' ')[2] + ' ' + date.getUTCFullYear();
+	$("#month-year").textContent = months[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 
 	while (date.getUTCMonth() == month-1) {
 		const elem = document.createElement('div');
