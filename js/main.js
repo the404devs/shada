@@ -16,8 +16,8 @@ function dayRightClick(e) {
 	colorPicker.style.left = e.pageX + 'px';
 	colorPicker.click();
 
-	colorPicker.oninput = e => {
-		event.style.borderColor = e.target.value;
+	colorPicker.oninput = f => {
+		e.target.style.borderColor = f.target.value;
 	}
 
 	colorPicker.value = '#ff0000';
