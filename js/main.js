@@ -18,7 +18,7 @@ function generateTable() {
 	});
 	let date = new Date(`${year}-${month}-01`);
 
-	$("#month-year").textContent = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+	$("#month-year").textContent = date.toUTCString().split(' ')[2] + ' ' + date.getUTCFullYear();
 
 	while (date.getUTCMonth() == month-1) {
 		const elem = document.createElement('div');

@@ -407,7 +407,7 @@ ul {
 .page-area {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px;
     width: 1632px;
@@ -419,7 +419,7 @@ ul {
 .grid-container {
     display: grid;
     grid-template-columns: 230px 230px 230px 230px 230px 230px 230px;
-    grid-template-rows: min-content min-content min-content min-content min-content min-content;
+    grid-template-rows: 60px 230px 230px 230px 230px 230px;
     justify-content: center;
 }
 
@@ -515,19 +515,54 @@ input#color-picker {
     visibility: hidden;
 }
 
+div.page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+}
+
+div.page-header > div.inner {
+    display: flex; 
+    flex-direction: column; 
+    align-items: end; 
+    margin: 30px;
+    height: 100%;
+    justify-content: center;
+}
+
 span.title {
     font-family: 'Manrope', sans-serif;
-    font-size: 68px;
+    font-size: 100px;
+    line-height: 100px;
     font-weight: bold;
     color: black;
     text-transform: uppercase;
+    text-align: center;
+}
+
+span.subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 64px;
+    line-height: 64px;
+    color: black;
+    margin-top: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 span.month-year {
     font-family: 'Manrope', sans-serif;
-    font-size: 24px;
+    font-size: 50px;
     color: black;
     margin-bottom: 20px;
     font-weight: 500;
     text-transform: uppercase;
+}
+
+img#logo {
+    margin: 30px;
 }
