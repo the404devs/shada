@@ -7,13 +7,16 @@
     --text-dark: black;
     --header-height: 50px;
 
-    --cal-bg: rgba(241, 245, 248, 0.75);
-    --cal-border: rgba(0,0,0,0.08);
+    --cal-bg: white;
+    --cal-bg-alt: #f4f7fa;
+    --cal-border: #c0c0c0;
     --cal-fg: #000;
+
+    --cal-blue: #283587;
 }
 
 body {
-    background: var(--background);
+    background: var(--cal-bg-alt);
 }
 
 .footer {
@@ -202,7 +205,7 @@ span.text-button {
     cursor: pointer;
     flex-basis: 10%;
     padding: 15px 10px;
-    justify-content: end;
+    justify-content: center;
     display: flex;
     font-size: 1.17em;
     /* line-height: 35px; */
@@ -412,7 +415,9 @@ ul {
     /* padding: 20px; */
     width: 1632px;
     height: 2112px;
-    background-color: white;
+    background-color: var(--cal-bg);
+    border: 1px  solid var(--cal-border);
+    border-radius: 8px;
 }
 
 
@@ -426,7 +431,7 @@ ul {
 }
 
 .grid-item {
-    background-color: var(--cal-bg);
+    background-color: var(--cal-bg-alt);
     border: 1px solid var(--cal-border);
     border-radius: 8px;
     /* margin: 5px; */
@@ -563,13 +568,21 @@ span.subtitle {
     text-align: center;
 }
 
+div.month-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -40px;
+}
+
 span.month-year {
     font-family: 'Manrope', sans-serif;
     font-size: 50px;
     color: black;
     font-weight: 700;
     text-transform: uppercase;
-    margin-top: -40px;
 }
 
 img#logo {
@@ -577,14 +590,114 @@ img#logo {
     width: 500px;
 }
 
-button#download-pdf {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    color: black;
+.sidenav {
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    display: flex;
+    z-index: 10000002;
+    top: 0;
+    right: 0;
+    background-color: var(--background-transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow-x: hidden;
+    transition: 0.2s linear width;
+    padding-top: 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    flex-direction: column;    
+    align-items: center;
+    border-left: 2px solid var(--border);
 }
 
-button#download-pdf::before {
-    background-color: red;
+.sidenav.shown {
+    width: 250px;
+}
+
+.sidenav > a {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: var(--cal-fg);
+    padding: 16px;
+    text-decoration: none;
+    border-radius: 0;
+    border: 2px solid transparent;
+    display: block;
+    width: 200px;
+    cursor: pointer;
+    transition: 0.15s ease;
+    /* text-shadow: 2px 2px 0 black; */
+}
+.sidenav > a:hover,
+.sidenav > a.active {
+    color: var(--text-alt);
+    background-color: rgba(199, 121, 206, 0.5);
+    border-color: var(--border);
+    border-radius: 50px;
+    text-shadow: none;
+}
+.sidenav > a:hover > i,
+.sidenav > a.active > i {
+    color: var(--text-alt);
+}
+.sidenav i {
+    font-size: 20px;
+    width: 24px;
+    padding-right: 15px;
+    text-align: center;
+    color: var(--cal-blue);
+}
+.sidenav > hr {
+    width: 100%;
+    border-color: var(--border);
+}
+
+.menu-button {
+    color: var(--cal-blue);
+    position: fixed;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    top: 14px;
+    right: 10px;
+    transition: 0.25s ease;
+    cursor: pointer;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    background-color: var(--cal-bg-alt);
+    /* -webkit-text-stroke: var(--important) 2px; */
+    border: 2px solid var(--cal-border);
+    border-radius: 50%;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+.menu-button > i {
+    /* width: 40px; */
+    /* height: 40px; */
+    /* overflow: visible; */
+    /* filter: drop-shadow(2px 2px 0 black); */
+}
+.menu-button > svg > path {
+    fill: var(--text);
+    /* stroke: black; */
+    stroke-width: 5%;
+}
+
+.menu-button::before {
+    background: rgba(199, 121, 206, 0.5);
+    border-radius: 50%;
+    height: 0;
+    width: 0;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: 0.15s ease width, 0.15s ease height, 0.4s ease transform;
+}
+.menu-button:hover::before {
+    height: 100%;
+    width: 100%;
+    transform: rotate(360deg);
 }

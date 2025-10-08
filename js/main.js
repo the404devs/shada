@@ -1,13 +1,16 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const closeTemplate = $("#close");
-const month = 10;
-const year = 2025;
+let year, month;
 
 let dragElem;
 let selectedElem;
 
-function dayRightClick(e) {
+function eventRightClick(e) {
+	let target = e.target;
+	while (!target.classList.contains('grid-item') && !target.classList.contains('event')) {
+		target = target.parentElement;
+	}
 	e.preventDefault();
 	
 	colorPicker = $("#color-picker");
@@ -17,17 +20,17 @@ function dayRightClick(e) {
 	colorPicker.click();
 
 	colorPicker.oninput = f => {
-		e.target.style.borderColor = f.target.value;
+		target.style.borderColor = f.target.value;
 	}
 
 	colorPicker.value = '#ff0000';
 }
 
-function dayDragStart(e) {
+function eventDragStart(e) {
 	dragElem = e.target;
 }
 
-function generateTable() {
+function generateTable(year, month) {
 	const toby = $('div#render-target');
 	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -66,11 +69,16 @@ function generateTable() {
 			e.preventDefault();
 		}
 		elem.ondrop = e => {
+			let dropTarget = e.target;
+			while (!dropTarget.classList.contains('grid-item')) {
+				dropTarget = dropTarget.parentElement;
+			}
+			if (dragElem === null || dropTarget === dragElem) { return; }
 			const clone = dragElem.cloneNode(true);
-			clone.oncontextmenu = dayRightClick;
-			clone.ondragstart = dayDragStart;
+			clone.oncontextmenu = eventRightClick;
+			clone.ondragstart = eventDragStart;
 			clone.querySelector('.text-button').onclick = e => { clone.remove() };
-			e.target.appendChild(clone);
+			dropTarget.appendChild(clone);
 			dragElem = null;
 		}
 
@@ -110,9 +118,9 @@ function addEvent(parent) {
 
 	parent.appendChild(event);
 
-	event.oncontextmenu = dayRightClick;
+	event.oncontextmenu = eventRightClick;
 
-	event.ondragstart = dayDragStart;
+	event.ondragstart = eventDragStart;
 }
 
 function generatePDF() {
@@ -125,6 +133,24 @@ function generatePDF() {
 	  });
 }
 
+function changeMonth(delta) {
+	if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
+		month += delta;
+		if (month < 1) {
+			month = 12;
+			year -= 1;
+		} else if (month > 12) {
+			month = 1;
+			year += 1;
+		}
+		$('div#render-target').innerHTML = '';
+		generateTable(year, month);
+	}
+}
 
 
-generateTable();
+let d = new Date();
+year = d.getUTCFullYear();
+month = d.getUTCMonth()+1;
+
+generateTable(year, month);
