@@ -7,6 +7,26 @@ const year = 2025;
 let dragElem;
 let selectedElem;
 
+function dayRightClick(e) {
+	e.preventDefault();
+	
+	colorPicker = $("#color-picker");
+	colorPicker.value = '#ff0000';
+	colorPicker.style.top = e.pageY + 'px';
+	colorPicker.style.left = e.pageX + 'px';
+	colorPicker.click();
+
+	colorPicker.oninput = e => {
+		event.style.borderColor = e.target.value;
+	}
+
+	colorPicker.value = '#ff0000';
+}
+
+function dayDragStart(e) {
+	dragElem = e.target;
+}
+
 function generateTable() {
 	const toby = $('div#render-target');
 	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -45,7 +65,11 @@ function generateTable() {
 			e.preventDefault();
 		}
 		elem.ondrop = e => {
-			e.target.appendChild(dragElem.cloneNode(true));
+			const clone = dragElem.cloneNode(true);
+			clone.oncontextmenu = dayRightClick;
+			clone.ondragstart = dayDragStart;
+			clone.querySelector('.text-button').onclick = e => { clone.remove() };
+			e.target.appendChild(clone);
 			dragElem = null;
 		}
 
@@ -85,23 +109,9 @@ function addEvent(parent) {
 
 	parent.appendChild(event);
 
-	event.oncontextmenu = e => {
-		e.preventDefault();
-		colorPicker = $("#color-picker");
-		colorPicker.style.top = e.pageY + 'px';
-		colorPicker.style.left = e.pageX + 'px';
-		colorPicker.click();
+	event.oncontextmenu = dayRightClick;
 
-		colorPicker.oninput = e => {
-			event.style.borderColor = e.target.value;
-		}
-
-		colorPicker.value = '#ff0000';
-	}
-
-	event.ondragstart = e => {
-		dragElem = e.target;
-	}
+	event.ondragstart = dayDragStart;
 }
 
 function generatePDF() {
