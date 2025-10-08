@@ -531,7 +531,7 @@ div.page-header {
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    margin: 10px 0;
+    margin-top: 10px;
 }
 
 div.page-header > div.inner {
