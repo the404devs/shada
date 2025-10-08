@@ -2,40 +2,77 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const closeTemplate = $("#close");
 let year, month;
-
 let dragElem;
 let selectedElem;
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 function eventRightClick(e) {
 	let target = e.target;
-	while (!target.classList.contains('grid-item') && !target.classList.contains('event')) {
+	while (!target.classList.contains('event')) {
 		target = target.parentElement;
 	}
 	e.preventDefault();
+
+
+	colorPickerPopup = $("#color-picker-popup");
+	colorPickerPopup.style.top = e.pageY + 'px';
+	colorPickerPopup.style.left = e.pageX + 'px';
+	colorPickerPopup.style.visibility = 'visible';
+
+
+	$$('#color-picker-popup .color-swatch').forEach(swatch => {
+		swatch.onclick = f => {
+			target.style.borderColor = getComputedStyle(f.target).backgroundColor;
+			colorPickerPopup.style.visibility = 'hidden';
+		}
+	});
+
+
 	
-	colorPicker = $("#color-picker");
-	colorPicker.value = '#ff0000';
-	colorPicker.style.top = e.pageY + 'px';
-	colorPicker.style.left = e.pageX + 'px';
-	colorPicker.click();
+	// colorPicker = $("#color-picker");
+	// colorPicker.value = '#ff0000';
+	// colorPicker.style.top = e.pageY + 'px';
+	// colorPicker.style.left = e.pageX + 'px';
+	// colorPicker.click();
 
-	colorPicker.oninput = f => {
-		target.style.borderColor = f.target.value;
-	}
+	// colorPicker.oninput = f => {
+	// 	target.style.borderColor = f.target.value;
+	// }
 
-	colorPicker.value = '#ff0000';
+	// colorPicker.value = '#ff0000';
 }
 
 function eventDragStart(e) {
 	dragElem = e.target;
 }
 
+function itemDoubleClick(e) {
+	if (e.target === e.currentTarget) {
+		addEvent(e.currentTarget);
+	}
+}
+
+function itemDragOver(e) {
+	e.preventDefault();
+}
+
+function itemOnDrop(e) {
+	e.preventDefault();
+	if (dragElem === null || e.target === dragElem) { return; }
+	const clone = dragElem.cloneNode(true);
+	clone.oncontextmenu = eventRightClick;
+	clone.ondragstart = eventDragStart;
+	clone.querySelector('.text-button').onclick = e => { clone.remove() };
+	e.target.appendChild(clone);
+	dragElem = null;
+}
+
 function generateTable(year, month) {
 	const toby = $('div#render-target');
-	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	
 
-	weekdays.forEach(weekday => {
+	WEEKDAYS.forEach(weekday => {
 		const headerElem = document.createElement('div');
 		headerElem.className = 'grid-item weekday';
 		headerElem.textContent = weekday;
@@ -43,7 +80,7 @@ function generateTable(year, month) {
 	});
 	let date = new Date(`${year}-${month}-01`);
 
-	$("#month-year").textContent = months[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
+	$("#month-year").textContent = MONTHS[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 
 	while (date.getUTCMonth() == month-1) {
 		const elem = document.createElement('div');
@@ -59,28 +96,10 @@ function generateTable(year, month) {
 
 		elem.style.gridColumnStart = index;
 
-		elem.ondblclick = e => {
-			if (e.target === elem) {
-				addEvent(elem);
-			}
-		}
+		elem.ondblclick = itemDoubleClick;
 
-		elem.ondragover = e => {
-			e.preventDefault();
-		}
-		elem.ondrop = e => {
-			let dropTarget = e.target;
-			while (!dropTarget.classList.contains('grid-item')) {
-				dropTarget = dropTarget.parentElement;
-			}
-			if (dragElem === null || dropTarget === dragElem) { return; }
-			const clone = dragElem.cloneNode(true);
-			clone.oncontextmenu = eventRightClick;
-			clone.ondragstart = eventDragStart;
-			clone.querySelector('.text-button').onclick = e => { clone.remove() };
-			dropTarget.appendChild(clone);
-			dragElem = null;
-		}
+		elem.ondragover = itemDragOver;
+		elem.ondrop = itemOnDrop;
 
 		toby.appendChild(elem);
 		date.setUTCDate(date.getUTCDate() + 1);
@@ -133,6 +152,67 @@ function generatePDF() {
 	  });
 }
 
+function queryLocalStorage() {
+	const list = $('#saved-calendars-list');
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith('calendar-')) {
+			const entry = document.createElement('a');
+			const icon = document.createElement('i');
+			icon.className = 'fas fa-calendar';
+			entry.appendChild(icon);
+			entry.className = 'saved-calendar-entry';
+			let monthName = MONTHS[key.split('-')[2] - 1];
+			let yearNum = key.split('-')[1];
+			entry.appendChild(document.createTextNode(`${monthName} ${yearNum}`));
+			entry.id = key;
+			entry.onclick = () => {
+				loadMonthFromLocalStorage(key);
+			};
+			list.appendChild(entry);
+		}
+	}
+}
+
+function saveMonthToLocalStorage() {
+	const toby = $('div#render-target');
+	localStorage.setItem(`calendar-${year}-${month}`, toby.innerHTML);
+	alert("Calendar saved to local storage.");
+	// const list = $('#saved-calendars-list');
+	// const entry = document.createElement('div');
+	// const key = `calendar-${year}-${month}`;
+	// entry.className = 'saved-calendar-entry';
+	// entry.textContent = `${year}-${month.toString().padStart(2, '0')}`;
+	// entry.id = key;
+	// entry.onclick = () => {
+	// 	loadMonthFromLocalStorage(key);
+	// };
+	// list.appendChild(entry);
+	queryLocalStorage();
+}
+
+function loadMonthFromLocalStorage(key) {
+	const toby = $('div#render-target');
+	const data = localStorage.getItem(key);
+	if (data) {
+		if (confirm("Loading from local storage will clear the current calendar. Do you want to continue?")) {
+			toby.innerHTML = data;
+			$$('.event').forEach(event => {
+				event.oncontextmenu = eventRightClick;
+				event.ondragstart = eventDragStart;
+				event.querySelector('.text-button').onclick = e => { event.remove() };
+			});
+			$$('.grid-item').forEach(item => {
+				item.ondblclick = itemDoubleClick;
+				item.ondragover = itemDragOver;
+				item.ondrop = itemOnDrop;
+			});
+		}
+	} else {
+		alert("No saved calendar found for this month in local storage.");
+	}
+}
+
 function changeMonth(delta) {
 	if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
 		month += delta;
@@ -152,5 +232,5 @@ function changeMonth(delta) {
 let d = new Date();
 year = d.getUTCFullYear();
 month = d.getUTCMonth()+1;
-
+queryLocalStorage();
 generateTable(year, month);
