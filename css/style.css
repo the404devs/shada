@@ -436,7 +436,7 @@ ul {
     text-align: center;
     overflow: hidden;
     font-family: 'Manrope', sans-serif;
-    padding: 5px;
+    padding: 5px 5px 15px 5px;
     cursor: pointer;
     min-height: 220px;
     transition: 0.2s ease all;
