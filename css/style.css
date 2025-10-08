@@ -483,7 +483,7 @@ ul {
 
 .event {
     text-align: left;
-    border-left: 4px solid red;
+    border-left: 6px solid red;
     display: flex;
     flex-direction: row;
     padding-left: 5px;
