@@ -65,6 +65,8 @@ function addEvent(parent) {
 	const deleteButton = document.createElement('span');
 	deleteButton.classList.add("text-button");
 	deleteButton.innerHTML = closeTemplate.outerHTML;
+	deleteButton.setAttribute('title', 'Delete Event');
+	deleteButton.setAttribute('data-html2canvas-ignore', 'true');
 	deleteButton.onclick = (e) => { event.remove() };
 	event.appendChild(deleteButton);
 	
@@ -86,6 +88,16 @@ function addEvent(parent) {
 
 		colorPicker.value = '#ff0000';
 	}
+}
+
+function generatePDF() {
+	html2pdf($("#pdf-content"), {
+		margin:       0,
+		filename:     'events-calendar.pdf',
+		image:        { type: 'jpeg', quality: 0.98 },
+		html2canvas:  { scale: 2, width: 1632, height: 2112 },
+		jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+	  });
 }
 
 
