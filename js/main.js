@@ -99,7 +99,7 @@ function addEvent(parent) {
 		colorPicker.value = '#ff0000';
 	}
 
-	elem.ondragstart = e => {
+	event.ondragstart = e => {
 		dragElem = e.target;
 	}
 }
