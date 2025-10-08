@@ -476,6 +476,7 @@ ul {
     color: var(--cal-fg);
     font-family: 'Manrope', sans-serif;
     text-align: right;
+    align-self: flex-end;
     font-size: 24px;
 }
 
@@ -485,6 +486,7 @@ ul {
     display: flex;
     flex-direction: row;
     padding-left: 5px;
+    position: relative;
     margin-bottom: 5px;
     justify-content: space-between;
 }
@@ -503,14 +505,16 @@ ul {
 }
 .event span.top {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
 }
 .event span.bottom {
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .event .text-button {
     padding: 0;
+    position: absolute;
+    right: 0;
     color: var(--cal-fg);
 }
 
