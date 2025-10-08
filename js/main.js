@@ -4,6 +4,7 @@ const closeTemplate = $("#close");
 const month = 10;
 const year = 2025;
 
+let dragElem;
 let selectedElem;
 
 function generateTable() {
@@ -40,6 +41,14 @@ function generateTable() {
 			}
 		}
 
+		elem.ondragover = e => {
+			e.preventDefault();
+		}
+		elem.ondrop = e => {
+			e.target.appendChild(dragElem.cloneNode(true));
+			dragElem = null;
+		}
+
 		toby.appendChild(elem);
 		date.setUTCDate(date.getUTCDate() + 1);
 	}
@@ -48,6 +57,7 @@ function generateTable() {
 function addEvent(parent) {
 	const event = document.createElement("div");
 	event.className = 'event';
+	event.draggable = true;
 
 	const group = document.createElement("div");
 	group.className = 'group';
@@ -87,6 +97,10 @@ function addEvent(parent) {
 		}
 
 		colorPicker.value = '#ff0000';
+	}
+
+	elem.ondragstart = e => {
+		dragElem = e.target;
 	}
 }
 
