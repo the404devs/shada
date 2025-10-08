@@ -531,7 +531,7 @@ div.page-header {
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 div.page-header > div.inner {
@@ -569,6 +569,7 @@ span.month-year {
     color: black;
     font-weight: 700;
     text-transform: uppercase;
+    margin-top: -40px;
 }
 
 img#logo {
