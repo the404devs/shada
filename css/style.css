@@ -545,8 +545,7 @@ div.page-header > div.inner {
 
 span.title {
     font-family: 'Manrope', sans-serif;
-    font-size: 100px;
-    line-height: 100px;
+    font-size: 70px;
     font-weight: 600;
     color: #283587;
     /* text-transform: uppercase; */
@@ -574,7 +573,7 @@ span.month-year {
 
 img#logo {
     margin: 0 30px;
-    
+    width: 500px;
 }
 
 button#download-pdf {
