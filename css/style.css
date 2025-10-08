@@ -421,8 +421,8 @@ ul {
     grid-template-columns: 230px 230px 230px 230px 230px 230px 230px;
     grid-template-rows: 60px auto auto auto auto auto auto;
     justify-content: center;
-    /* border-top: 1px solid var(--cal-fg); */
-    border: 1px solid red;
+    border-top: 1px solid var(--cal-fg);
+    /* border: 1px solid red; */
 }
 
 .grid-item {
