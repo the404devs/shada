@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const closeTemplate = $("#close");
-const month = 11;
+const month = 10;
 const year = 2025;
 
 let selectedElem;
@@ -60,7 +60,7 @@ function addEvent(parent) {
 	const bottom = document.createElement('span');
 	bottom.className = 'bottom';
 	bottom.contentEditable = true;
-	bottom.textContent = 'Time';
+	bottom.textContent = 'Description';
 
 	const deleteButton = document.createElement('span');
 	deleteButton.classList.add("text-button");
