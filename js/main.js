@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const closeTemplate = $("#close");
-const month = 10;
+const month = 11;
 const year = 2025;
 
 let selectedElem;

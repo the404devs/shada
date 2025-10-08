@@ -419,8 +419,9 @@ ul {
 .grid-container {
     display: grid;
     grid-template-columns: 230px 230px 230px 230px 230px 230px 230px;
-    grid-template-rows: 60px 230px 230px 230px 230px 230px;
+    grid-template-rows: 60px 280px 280px 280px 280px 280px 280px;
     justify-content: center;
+    border-top: 1px solid var(--cal-fg);
 }
 
 .grid-item {
@@ -456,14 +457,17 @@ ul {
 .grid-item.weekday {
     font-weight: bold;
     height: min-content;
-    font-size: 24px;
+    font-size: 34px;
     text-transform: uppercase;
     cursor: default;
     min-height: unset;
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
 }
 
 .grid-item.weekday:hover {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
     transform: initial;
 }
 
@@ -472,7 +476,7 @@ ul {
     color: var(--cal-fg);
     font-family: 'Manrope', sans-serif;
     text-align: right;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .event {
@@ -499,10 +503,10 @@ ul {
 }
 .event span.top {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 24px;
 }
 .event span.bottom {
-    font-size: 12px;
+    font-size: 22px;
 }
 
 .event .text-button {
@@ -558,11 +562,10 @@ span.month-year {
     font-family: 'Manrope', sans-serif;
     font-size: 50px;
     color: black;
-    margin-bottom: 20px;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 img#logo {
-    margin: 30px;
+    margin: 0 30px;
 }
