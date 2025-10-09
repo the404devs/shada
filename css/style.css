@@ -750,7 +750,7 @@ img#logo {
     border-radius: 4px;
     margin: 2px;
     cursor: pointer;
-    transition: 0.2s ease all;
+    transition: 0.2s ease transform, 0.2s ease box-shadow;
     display: inline-block;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
