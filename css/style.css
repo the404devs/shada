@@ -521,6 +521,12 @@ ul {
     justify-content: space-between;
 }
 
+.event.hideBorder {
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+}
+
 .event > .group > span {
     color: var(--cal-fg);
     /* width: -webkit-fill-available; */
