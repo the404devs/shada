@@ -26,6 +26,7 @@
 
 body {
     background: var(--cal-bg-alt);
+    margin: 0;
 }
 
 .footer {
@@ -534,8 +535,14 @@ ul {
     padding: 0;
     position: absolute;
     right: 0;
+    top: calc(50% - 12.5px);
     font-size: 27px;
     color: var(--cal-fg);
+    visibility: hidden;
+}
+
+.event:hover .text-button {
+    visibility: visible;
 }
 
 input#color-picker {
@@ -597,7 +604,7 @@ img#logo {
     z-index: 10000002;
     top: 0;
     right: 0;
-    background-color: var(--background-transparent);
+    background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     overflow-x: hidden;

@@ -70,7 +70,7 @@ function itemDragOver(e) {
 
 function itemOnDrop(e) {
 	e.preventDefault();
-	if (dragElem === null || e.target === dragElem) { return; }
+	if (dragElem === null || e.target === dragElem || e.target.className != "grid-item") { return; }
 	const clone = dragElem.cloneNode(true);
 	clone.oncontextmenu = eventRightClick;
 	clone.ondragstart = eventDragStart;
@@ -215,7 +215,8 @@ function loadMonthFromLocalStorage(key) {
 				event.ondragstart = eventDragStart;
 				event.querySelector('.text-button').onclick = e => { event.remove() };
 			});
-			$$('.grid-item').forEach(item => {
+
+			$$('.grid-item:not(.weekday)').forEach(item => {
 				item.ondblclick = itemDoubleClick;
 				item.ondragover = itemDragOver;
 				item.ondrop = itemOnDrop;
