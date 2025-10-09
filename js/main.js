@@ -159,7 +159,7 @@ function generatePDF() {
 		margin:       0,
 		filename:     'events-calendar.pdf',
 		image:        { type: 'jpeg', quality: 0.98 },
-		html2canvas:  { scale: 3, width: 1632, height: 2112, imageTimeout: 0, logging: false, removeContainer: false },
+		html2canvas:  { scale: 3, width: 1632, height: 2112, imageTimeout: 0, logging: false, removeContainer: true },
 		jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
 	});
 }
@@ -191,16 +191,6 @@ function saveMonthToLocalStorage() {
 	const toby = $('div#render-target');
 	localStorage.setItem(`calendar-${year}-${month}`, toby.innerHTML);
 	alert("Calendar saved to local storage.");
-	// const list = $('#saved-calendars-list');
-	// const entry = document.createElement('div');
-	// const key = `calendar-${year}-${month}`;
-	// entry.className = 'saved-calendar-entry';
-	// entry.textContent = `${year}-${month.toString().padStart(2, '0')}`;
-	// entry.id = key;
-	// entry.onclick = () => {
-	// 	loadMonthFromLocalStorage(key);
-	// };
-	// list.appendChild(entry);
 	queryLocalStorage();
 }
 
