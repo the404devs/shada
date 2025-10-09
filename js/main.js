@@ -16,9 +16,33 @@ function eventRightClick(e) {
 
 
 	colorPickerPopup = $("#color-picker-popup");
-	colorPickerPopup.style.top = e.pageY + 'px';
-	colorPickerPopup.style.left = e.pageX + 'px';
+
+	// Ensure the popup is within the viewport
+	const popupWidth = 222; // Approximate width of the popup
+	const popupHeight = 100; // Approximate height of the popup
+	const pageWidth = document.documentElement.clientWidth;
+	const pageHeight = document.documentElement.clientHeight;	
+
+	if (e.pageX + popupWidth > pageWidth) {
+		colorPickerPopup.style.left = (e.pageX - popupWidth) + 'px';
+	} else {
+		colorPickerPopup.style.left = e.pageX + 'px';
+	}
+
+	if (e.pageY + popupHeight > pageHeight) {
+		colorPickerPopup.style.top = (e.pageY - popupHeight) + 'px';
+	} else {
+		colorPickerPopup.style.top = e.pageY + 'px';
+	}
 	colorPickerPopup.style.visibility = 'visible';
+
+	// Hide the popup if clicking outside of it
+	document.onclick = f => {
+		if (!f.target.classList.contains('color-swatch')) {
+			colorPickerPopup.style.visibility = 'hidden';
+		}
+		document.onclick = null;
+	}
 
 
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
@@ -28,19 +52,6 @@ function eventRightClick(e) {
 		}
 	});
 
-
-	
-	// colorPicker = $("#color-picker");
-	// colorPicker.value = '#ff0000';
-	// colorPicker.style.top = e.pageY + 'px';
-	// colorPicker.style.left = e.pageX + 'px';
-	// colorPicker.click();
-
-	// colorPicker.oninput = f => {
-	// 	target.style.borderColor = f.target.value;
-	// }
-
-	// colorPicker.value = '#ff0000';
 }
 
 function eventDragStart(e) {
@@ -147,13 +158,14 @@ function generatePDF() {
 		margin:       0,
 		filename:     'events-calendar.pdf',
 		image:        { type: 'jpeg', quality: 0.98 },
-		html2canvas:  { scale: 2, width: 1632, height: 2112 },
+		html2canvas:  { scale: 3, width: 1632, height: 2112, imageTimeout: 0, logging: false, removeContainer: false },
 		jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-	  });
+	});
 }
 
 function queryLocalStorage() {
 	const list = $('#saved-calendars-list');
+	list.innerHTML = '';
 	for (let i = 0; i < localStorage.length; i++) {
 		const key = localStorage.key(i);
 		if (key.startsWith('calendar-')) {
