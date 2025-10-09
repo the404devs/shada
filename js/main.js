@@ -154,6 +154,7 @@ function addEvent(parent) {
 }
 
 function generatePDF() {
+	window.scrollTo(0, 0);
 	html2pdf($("#pdf-content"), {
 		margin:       0,
 		filename:     'events-calendar.pdf',
