@@ -464,6 +464,7 @@ ul {
     transition: 0.2s ease all;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
+    align-items: flex-start;
 }
 
 .grid-item:hover {
@@ -480,8 +481,8 @@ ul {
 
 .grid-item.weekday {
     font-weight: bold;
-    height: min-content;
-    font-size: 34px;
+    /* height: min-content; */
+    font-size: 28px;
     text-transform: uppercase;
     cursor: default;
     min-height: unset;
@@ -489,6 +490,9 @@ ul {
     background-color: transparent;
     border: none;
     color: var(--cal-grey);
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
 }
 
 .grid-item.weekday:hover {
