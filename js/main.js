@@ -210,6 +210,8 @@ function loadMonthFromLocalStorage(key) {
 
 	year = parseInt(key.split('-')[1]);
 	month = parseInt(key.split('-')[2]);
+	let date = new Date(`${year}-${month}-01`);
+	$("#month-year").textContent = MONTHS[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 	if (data) {
 		if (confirm("Loading from local storage will clear the current calendar. Do you want to continue?")) {
 			toby.innerHTML = data;
