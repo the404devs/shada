@@ -236,6 +236,10 @@ function changeMonth(delta) {
 	}
 }
 
+function showHelpPopup() {
+	alert("Double-click on a date to add an event.\n\nDrag an event by it's handle to copy it to another date.\n\nRight-click on an event to change it's colour.")
+}
+
 
 let d = new Date();
 year = d.getUTCFullYear();
