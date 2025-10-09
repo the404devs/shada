@@ -432,6 +432,11 @@ ul {
     border-radius: 8px;
 }
 
+.page-area.borderless {
+    border: none;
+    border-radius: 0;
+}
+
 
 .grid-container {
     display: grid;

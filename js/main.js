@@ -154,6 +154,7 @@ function addEvent(parent) {
 }
 
 function generatePDF() {
+	$('.page-area').classList.add('borderless');
 	window.scrollTo(0, 0);
 	html2pdf($("#pdf-content"), {
 		margin:       0,
@@ -162,6 +163,9 @@ function generatePDF() {
 		html2canvas:  { scale: 3, width: 1632, height: 2112, imageTimeout: 0, logging: false, removeContainer: true, scrollX: 0, scrollY: 0 },
 		jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
 	});
+	setTimeout(() => {
+		$('.page-area').classList.remove('borderless');
+	}, 3000);
 }
 
 function queryLocalStorage() {
