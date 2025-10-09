@@ -207,6 +207,9 @@ function saveMonthToLocalStorage() {
 function loadMonthFromLocalStorage(key) {
 	const toby = $('div#render-target');
 	const data = localStorage.getItem(key);
+
+	year = key.split('-')[1];
+	month = key.split('-'[2]);
 	if (data) {
 		if (confirm("Loading from local storage will clear the current calendar. Do you want to continue?")) {
 			toby.innerHTML = data;
