@@ -724,7 +724,7 @@ img#logo {
     right: 80px;
     z-index: 10000001;
     background-color: var(--cal-bg-alt);
-    border: 2px solid var(--cal-border);
+    border: 1px solid var(--cal-border);
     border-radius: 8px;
     box-shadow: var(--shadow);
     padding: 5px;
@@ -732,6 +732,7 @@ img#logo {
     height: auto;
     /* display: none; */
     visibility: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .color-swatch {
