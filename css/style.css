@@ -464,7 +464,6 @@ ul {
     transition: 0.2s ease all;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
-    align-items: flex-start;
 }
 
 .grid-item:hover {
