@@ -15,12 +15,13 @@
     --cal-blue: #283587;
     --cal-purple: #5c2483;
     --cal-grey: #777777;
-    --cal-pink: #ff00a5;
+    --cal-pink: #ee7bae;
     --cal-green: #008800;
     --cal-orange: #ffa500;
-    --cal-red: #ff0000;
-    --cal-yellow: #ffff00;
-    --cal-teal: #317ec7;
+    --cal-red: #a61923;
+    --cal-yellow: #f9b000;
+    --cal-teal: #08b0a0;
+    --cal-lblue: #0080c9;
     --cal-black: #000000;
 }
 
@@ -767,6 +768,7 @@ img#logo {
 .color-swatch#teal { background-color: var(--cal-teal); }
 .color-swatch#grey { background-color: var(--cal-grey); }
 .color-swatch#black { background-color: var(--cal-black); }
+.color-swatch#lblue { background-color: var(--cal-lblue); }
 
 body > i {
     display: none!important;
