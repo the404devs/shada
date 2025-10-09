@@ -161,7 +161,7 @@ function generatePDF() {
 	window.scrollTo(0, 0);
 	html2pdf($("#pdf-content"), {
 		margin:       0,
-		filename:     'events-calendar.pdf',
+		filename:     `${$('span.title').textContent} - ${$('#month-year').textContent}.pdf`,
 		image:        { type: 'jpeg', quality: 0.98 },
 		html2canvas:  { scale: 3, width: 1632, height: 2112, imageTimeout: 0, logging: false, removeContainer: true, scrollX: 0, scrollY: 0 },
 		jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
