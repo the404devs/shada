@@ -243,7 +243,13 @@ function changeMonth(delta) {
 			year += 1;
 		}
 		$('div#render-target').innerHTML = '';
-		generateTable(year, month);
+		
+		const potentialKey = `calendar-${year}-${month}`
+		if (localStorage[potentialKey]) {
+			loadFromLocalStorage(potentialKey);
+		} else {
+			generateTable(year, month);
+		}
 	}
 }
 
