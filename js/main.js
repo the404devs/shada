@@ -244,12 +244,16 @@ function changeMonth(delta) {
 		}
 		$('div#render-target').innerHTML = '';
 		
-		const potentialKey = `calendar-${year}-${month}`
-		if (localStorage[potentialKey]) {
-			loadFromLocalStorage(potentialKey);
-		} else {
-			generateTable(year, month);
-		}
+		loadOrGenerateMonth();
+	}
+}
+
+function loadOrGenerateMonth() {
+	const potentialKey = `calendar-${year}-${month}`
+	if (localStorage[potentialKey]) {
+		loadMonthFromLocalStorage(potentialKey);
+	} else {
+		generateTable(year, month);
 	}
 }
 
@@ -262,4 +266,4 @@ let d = new Date();
 year = d.getUTCFullYear();
 month = d.getUTCMonth()+1;
 queryLocalStorage();
-generateTable(year, month);
+loadOrGenerateMonth();
