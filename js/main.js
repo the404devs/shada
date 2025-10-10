@@ -200,7 +200,7 @@ function queryLocalStorage() {
 function saveMonthToLocalStorage() {
 	const toby = $('div#render-target');
 	localStorage.setItem(`calendar-${year}-${month}`, toby.innerHTML);
-	alert("Calendar saved to local storage.");
+	// alert("Calendar saved to local storage.");
 	queryLocalStorage();
 }
 
