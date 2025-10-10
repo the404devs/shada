@@ -213,7 +213,7 @@ function loadMonthFromLocalStorage(key) {
 	let date = new Date(`${year}-${month}-01`);
 	$("#month-year").textContent = MONTHS[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 	if (data) {
-		if (confirm("Loading from local storage will clear the current calendar. Do you want to continue?")) {
+		// if (confirm("Loading from local storage will clear the current calendar. Do you want to continue?")) {
 			toby.innerHTML = data;
 			$$('.event').forEach(event => {
 				event.oncontextmenu = eventRightClick;
@@ -226,14 +226,14 @@ function loadMonthFromLocalStorage(key) {
 				item.ondragover = itemDragOver;
 				item.ondrop = itemOnDrop;
 			});
-		}
+		// }
 	} else {
 		alert("No saved calendar found for this month in local storage.");
 	}
 }
 
 function changeMonth(delta) {
-	if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
+	// if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
 		month += delta;
 		if (month < 1) {
 			month = 12;
@@ -245,7 +245,7 @@ function changeMonth(delta) {
 		$('div#render-target').innerHTML = '';
 		
 		loadOrGenerateMonth();
-	}
+	// }
 }
 
 function loadOrGenerateMonth() {
