@@ -269,7 +269,7 @@ function loadMonthFromLocalStorage(key) {
 
 function changeMonth(delta) {
 	if ($$('.event').length > 0) {
-		// saveMonthToLocalStorage();
+		saveMonthToLocalStorage();
 	}
 	// if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
 		month += delta;
@@ -297,6 +297,10 @@ function loadOrGenerateMonth() {
 
 function showHelpPopup() {
 	alert("Double-click on a date to add an event.\n\nDrag an event by it's handle to copy it to another date.\n\nRight-click on an event to change it's colour.")
+}
+
+window.onbeforeunload = () => {
+	saveMonthToLocalStorage();
 }
 
 let d = new Date();
