@@ -180,9 +180,9 @@ function generatePDF() {
 function queryLocalStorage() {
 	const list = $('#saved-calendars-list');
 	list.innerHTML = '';
+	let keys = [];
 	for (let i = 0; i < localStorage.length; i++) {
 		const key = localStorage.key(i);
-		let keys = [];
 		if (key.startsWith('calendar-json-')) {
 			keys.push(key);
 		}
