@@ -119,8 +119,12 @@ function generateTable(year, month) {
 }
 
 function addEvent(parent) {
+	parent.appendChild(generateEvent("New Event", "Description", "red"));
+}
+
+function generateEvent(title, body, color) {
 	const event = document.createElement("div");
-	event.className = 'event';
+	event.className = `event ${color}`;
 	event.draggable = true;
 
 	const group = document.createElement("div");
@@ -130,11 +134,11 @@ function addEvent(parent) {
 	const top = document.createElement('span');
 	top.className = 'top';
 	top.contentEditable = true;
-	top.textContent = 'New Event';
+	top.innerHTML = title.replaceAll("\\n", "<br>");
 	const bottom = document.createElement('span');
 	bottom.className = 'bottom';
 	bottom.contentEditable = true;
-	bottom.textContent = 'Description';
+	bottom.innerHTML = body.replaceAll("\\n", "<br>");
 
 	const deleteButton = document.createElement('span');
 	deleteButton.classList.add("text-button");
@@ -143,15 +147,13 @@ function addEvent(parent) {
 	deleteButton.setAttribute('data-html2canvas-ignore', 'true');
 	deleteButton.onclick = (e) => { event.remove() };
 	event.appendChild(deleteButton);
-	
+
 	group.appendChild(top);
 	group.appendChild(bottom);
-
-	parent.appendChild(event);
-
 	event.oncontextmenu = eventRightClick;
-
 	event.ondragstart = eventDragStart;
+
+	return event;
 }
 
 function generatePDF() {
@@ -198,7 +200,7 @@ function queryLocalStorage() {
 	}
 }
 
-function saveMonthToLocalStorage() {
+function generateJSON() {
 	let data = {};
 	$$('.grid-item:not(.weekday)').forEach(item => {
 	    let num = parseInt(item.querySelector('span.num').textContent) -1;
@@ -213,6 +215,11 @@ function saveMonthToLocalStorage() {
 	        });
 	    });
 	});
+	return data;
+}
+
+function saveMonthToLocalStorage() {
+	let data = generateJSON();
 	localStorage.setItem(`calendar-json-${year}-${month}`, JSON.stringify(data));
 }
 
@@ -233,36 +240,8 @@ function loadMonthFromLocalStorage(key) {
 		const allEventsOnDate = data[num];
 		const targetCell = cells[num];
 		
-		allEventsOnDate.forEach(evt => {
-			const event = document.createElement("div");
-			event.className = `event ${evt.class}`;
-			event.draggable = true;
-			const group = document.createElement("div");
-			group.className = 'group';
-			const title = document.createElement("span");
-			title.className = "top";
-			title.contentEditable = true;
-			title.innerHTML = evt.title.replaceAll("\\n", "<br>");
-			const body = document.createElement("span");
-			body.className = "bottom";
-			body.contentEditable = true;
-			body.innerHTML = evt.body.replaceAll("\\n", "<br>");
-
-			const deleteButton = document.createElement('span');
-			deleteButton.classList.add("text-button");
-			deleteButton.innerHTML = closeTemplate.outerHTML;
-			deleteButton.setAttribute('title', 'Delete Event');
-			deleteButton.setAttribute('data-html2canvas-ignore', 'true');
-			deleteButton.onclick = (e) => { event.remove() };
-
-			group.appendChild(title);
-			group.appendChild(body);
-			event.appendChild(group);
-			event.appendChild(deleteButton);
-			targetCell.appendChild(event);
-
-			event.oncontextmenu = eventRightClick;
-			event.ondragstart = eventDragStart;
+		allEventsOnDate.forEach(event => {
+			targetCell.appendChild(generateEvent(event.title, event.body, event.class));
 		});
 	});
 }
