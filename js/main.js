@@ -150,7 +150,7 @@ function generateEvent(title, body, color) {
 	deleteButton.innerHTML = closeTemplate.outerHTML;
 	deleteButton.setAttribute('title', 'Delete Event');
 	deleteButton.setAttribute('data-html2canvas-ignore', 'true');
-	deleteButton.onclick = (e) => { event.remove() };
+	deleteButton.onclick = (e) => { event.remove(); saveMonthToLocalStorage(); };
 	event.appendChild(deleteButton);
 
 	group.appendChild(top);
@@ -263,7 +263,7 @@ function importTrigger() {
 }
 
 function importJSON() {
-	const file = document.querySelector('input[id=file-import]')['files'][0]; // Get the file from the hidden file input.
+	const file = $('input#file-import')['files'][0]; // Get the file from the hidden file input.
 	const reader = new FileReader();
 	reader.onload = function() {
 		const data = JSON.parse(reader.result);
@@ -273,6 +273,7 @@ function importJSON() {
 		loadMonthFromLocalStorage(`calendar-json-${data.year}-${data.month}`);
 	}
 	reader.readAsText(file);	
+	$('input#file-import').value = "";
 }
 
 function saveMonthToLocalStorage() {
