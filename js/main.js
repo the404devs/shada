@@ -220,8 +220,8 @@ function loadMonthFromLocalStorage(key) {
 	const toby = $('div#render-target');
 	const data = JSON.parse(localStorage.getItem(key));
 
-	year = parseInt(key.split('-')[1]);
-	month = parseInt(key.split('-')[2]);
+	year = parseInt(key.split('-')[2]);
+	month = parseInt(key.split('-')[3]);
 	let date = new Date(`${year}-${month}-01`);
 	$("#month-year").textContent = MONTHS[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 
