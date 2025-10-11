@@ -237,6 +237,7 @@ function loadMonthFromLocalStorage(key) {
 			const event = document.createElement("div");
 			event.className = `event ${evt.class}`;
 			const group = document.createElement("div");
+			group.className = 'group';
 			const title = document.createElement("span");
 			title.className = "top";
 			title.contentEditable = true;
