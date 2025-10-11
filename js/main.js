@@ -182,7 +182,27 @@ function queryLocalStorage() {
 	list.innerHTML = '';
 	for (let i = 0; i < localStorage.length; i++) {
 		const key = localStorage.key(i);
+		let keys = [];
 		if (key.startsWith('calendar-json-')) {
+			keys.push(key);
+		}
+		keys.sort((a,b) => {
+			let yA = parseInt(a.split('-')[2]);
+			let yB = parseInt(b.split('-')[2]);
+
+			if (yA > yB) { return 1 }
+			else if (yA < yB) { return -1 }
+			else {
+				let mA = parseInt(a.split('-')[3]);
+				let mB = parseInt(b.split('-')[3]);
+	
+				if (mA > mB) { return 1 }
+				else if (mA < mB) { return -1 }
+				else { return 0 }
+			}
+		});
+		
+		keys.forEach(key => {
 			const entry = document.createElement('a');
 			const icon = document.createElement('i');
 			icon.className = 'fas fa-calendar';
@@ -196,7 +216,7 @@ function queryLocalStorage() {
 				loadMonthFromLocalStorage(key);
 			};
 			list.appendChild(entry);
-		}
+		});
 	}
 }
 
@@ -249,6 +269,7 @@ function loadMonthFromLocalStorage(key) {
 function changeMonth(delta) {
 	if ($$('.event').length > 0) {
 		saveMonthToLocalStorage();
+		queryLocalStorage();
 	}
 	// if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
 		month += delta;
