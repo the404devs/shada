@@ -186,8 +186,8 @@ function queryLocalStorage() {
 			icon.className = 'fas fa-calendar';
 			entry.appendChild(icon);
 			entry.className = 'saved-calendar-entry';
-			let monthName = MONTHS[key.split('-')[2] - 1];
-			let yearNum = key.split('-')[1];
+			let monthName = MONTHS[key.split('-')[3] - 1];
+			let yearNum = key.split('-')[2];
 			entry.appendChild(document.createTextNode(`${monthName} ${yearNum}`));
 			entry.id = key;
 			entry.onclick = () => {
