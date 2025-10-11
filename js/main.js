@@ -254,7 +254,7 @@ function exportJSON() {
 }
 
 function importTrigger() {
-    $("#import-button").click();
+    $("#file-import").click();
 }
 
 function importJSON() {
