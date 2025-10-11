@@ -223,10 +223,8 @@ function queryLocalStorage() {
 function generateJSON() {
 	let data = {};
 	$$('.grid-item:not(.weekday)').forEach(item => {
-	    let num = parseInt(item.querySelector('span.num').textContent) -1;
-	
+	    let num = parseInt(item.querySelector('span.num').textContent) - 1;
 	    data[num] = [];
-	
 	    item.querySelectorAll('.event').forEach(event => {
 	        data[num].push({
 	            title: event.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
@@ -234,6 +232,9 @@ function generateJSON() {
 	            class: event.className.split(' ')[1]
 	        });
 	    });
+
+		data['year'] = year;
+		data['month'] = month;
 	});
 	return data;
 }
