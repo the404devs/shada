@@ -274,11 +274,11 @@ function saveMonthJSONToLS() {
 	
 	    item.querySelectorAll('.event').forEach(event => {
 	        data[num].push({
-	            title: event.querySelector('.top').textContent,
-	            body: event.querySelector('.bottom').textContent,
+	            title: event.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
+	            body: event.querySelector('.bottom').innerHTML.replaceAll("<br>", "\n"),
 	            class: event.className.split(' ')[1]
-	        })
-	    })
+	        });
+	    });
 	});
 }
 
