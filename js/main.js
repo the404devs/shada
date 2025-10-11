@@ -246,8 +246,8 @@ function loadMonthFromLocalStorage(key) {
 			body.contentEditable = true;
 			body.textContent = evt.body;
 
-			group.appendChild(top);
-			group.appendChild(bottom);
+			group.appendChild(title);
+			group.appendChild(body);
 			event.appendChild(group);
 			targetCell.appendChild(event);
 		});
@@ -256,7 +256,7 @@ function loadMonthFromLocalStorage(key) {
 
 function changeMonth(delta) {
 	if ($$('.event').length > 0) {
-		saveMonthToLocalStorage();
+		// saveMonthToLocalStorage();
 	}
 	// if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
 		month += delta;
