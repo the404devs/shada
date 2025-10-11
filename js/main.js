@@ -48,7 +48,7 @@ function eventRightClick(e) {
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
 		swatch.onclick = f => {
 			// target.style.borderLeftColor = getComputedStyle(f.target).backgroundColor;
-			target.className = `event ${target.id}`;
+			target.className = `event ${swatch.id}`;
 			colorPickerPopup.style.visibility = 'hidden';
 		}
 	});
@@ -263,6 +263,23 @@ function loadOrGenerateMonth() {
 
 function showHelpPopup() {
 	alert("Double-click on a date to add an event.\n\nDrag an event by it's handle to copy it to another date.\n\nRight-click on an event to change it's colour.")
+}
+
+function saveMonthJSONToLS() {
+	let data = {};
+	$$('.grid-item:not(.weekday)').forEach(item => {
+	    let num = parseInt(item.querySelector('span.num').textContent) -1;
+	
+	    data[num] = [];
+	
+	    item.querySelectorAll('.event').forEach(event => {
+	        data[num].push({
+	            title: event.querySelector('.top').textContent,
+	            body: event.querySelector('.bottom').textContent,
+	            class: event.className.split(' ')[1]
+	        })
+	    })
+	});
 }
 
 
