@@ -94,12 +94,7 @@ function resetTable() {
 function generateTable(year, month) {
 	const toby = $('div#render-target');
 	
-	WEEKDAYS.forEach(weekday => {
-		const headerElem = document.createElement('div');
-		headerElem.className = 'grid-item weekday';
-		headerElem.textContent = weekday;
-		toby.appendChild(headerElem);
-	});
+	resetTable();
 	let date = new Date(`${year}-${month}-01`);
 
 	$("#month-year").textContent = MONTHS[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
@@ -286,6 +281,7 @@ function saveMonthToLocalStorage() {
 }
 
 function loadMonthFromLocalStorage(key) {
+	resetTable();
 	const toby = $('div#render-target');
 	const data = JSON.parse(localStorage.getItem(key));
 
@@ -334,7 +330,6 @@ function changeMonth(delta) {
 
 function loadOrGenerateMonth() {
 	const potentialKey = `calendar-json-${year}-${month}`;
-	resetTable();
 	if (localStorage[potentialKey]) {
 		loadMonthFromLocalStorage(potentialKey);
 	} else {
