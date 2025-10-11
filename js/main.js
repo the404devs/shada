@@ -287,7 +287,7 @@ function changeMonth(delta) {
 }
 
 function loadOrGenerateMonth() {
-	const potentialKey = `calendar-${year}-${month}`
+	const potentialKey = `calendar-json-${year}-${month}`
 	if (localStorage[potentialKey]) {
 		loadMonthFromLocalStorage(potentialKey);
 	} else {
