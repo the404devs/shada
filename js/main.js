@@ -236,21 +236,33 @@ function loadMonthFromLocalStorage(key) {
 		allEventsOnDate.forEach(evt => {
 			const event = document.createElement("div");
 			event.className = `event ${evt.class}`;
+			event.draggable = true;
 			const group = document.createElement("div");
 			group.className = 'group';
 			const title = document.createElement("span");
 			title.className = "top";
 			title.contentEditable = true;
-			title.textContent = evt.title;
+			title.innerHTML = evt.title.replaceAll("\n", "<br>");
 			const body = document.createElement("span");
 			body.className = "bottom";
 			body.contentEditable = true;
-			body.textContent = evt.body;
+			body.innerHTML = evt.body.replaceAll("\n", "<br>");
+
+			const deleteButton = document.createElement('span');
+			deleteButton.classList.add("text-button");
+			deleteButton.innerHTML = closeTemplate.outerHTML;
+			deleteButton.setAttribute('title', 'Delete Event');
+			deleteButton.setAttribute('data-html2canvas-ignore', 'true');
+			deleteButton.onclick = (e) => { event.remove() };
 
 			group.appendChild(title);
 			group.appendChild(body);
 			event.appendChild(group);
+			event.appendChild(deleteButton);
 			targetCell.appendChild(event);
+
+			event.oncontextmenu = eventRightClick;
+			event.ondragstart = eventDragStart;
 		});
 	});
 }
