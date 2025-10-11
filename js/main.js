@@ -266,7 +266,7 @@ function importJSON() {
 		localStorage.setItem(`calendar-json-${data.year}-${data.month}`);
 		loadMonthFromLocalStorage(`calendar-json-${data.year}-${data.month}`);
 	}
-	
+	reader.readAsText(file);	
 }
 
 function saveMonthToLocalStorage() {
