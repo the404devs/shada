@@ -180,7 +180,7 @@ function queryLocalStorage() {
 	list.innerHTML = '';
 	for (let i = 0; i < localStorage.length; i++) {
 		const key = localStorage.key(i);
-		if (key.startsWith('calendar-')) {
+		if (key.startsWith('calendar-json-')) {
 			const entry = document.createElement('a');
 			const icon = document.createElement('i');
 			icon.className = 'fas fa-calendar';
@@ -199,38 +199,59 @@ function queryLocalStorage() {
 }
 
 function saveMonthToLocalStorage() {
-	const toby = $('div#render-target');
-	localStorage.setItem(`calendar-${year}-${month}`, toby.innerHTML);
-	// alert("Calendar saved to local storage.");
-	queryLocalStorage();
+	let data = {};
+	$$('.grid-item:not(.weekday)').forEach(item => {
+	    let num = parseInt(item.querySelector('span.num').textContent) -1;
+	
+	    data[num] = [];
+	
+	    item.querySelectorAll('.event').forEach(event => {
+	        data[num].push({
+	            title: event.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
+	            body: event.querySelector('.bottom').innerHTML.replaceAll("<br>", "\n"),
+	            class: event.className.split(' ')[1]
+	        });
+	    });
+	});
+	localStorage.setItem(`calendar-json-${year}-${month}`, JSON.stringify(data));
 }
 
 function loadMonthFromLocalStorage(key) {
 	const toby = $('div#render-target');
-	const data = localStorage.getItem(key);
+	const data = JSON.parse(localStorage.getItem(key));
 
 	year = parseInt(key.split('-')[1]);
 	month = parseInt(key.split('-')[2]);
 	let date = new Date(`${year}-${month}-01`);
 	$("#month-year").textContent = MONTHS[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
-	if (data) {
-		// if (confirm("Loading from local storage will clear the current calendar. Do you want to continue?")) {
-			toby.innerHTML = data;
-			$$('.event').forEach(event => {
-				event.oncontextmenu = eventRightClick;
-				event.ondragstart = eventDragStart;
-				event.querySelector('.text-button').onclick = e => { event.remove() };
-			});
 
-			$$('.grid-item:not(.weekday)').forEach(item => {
-				item.ondblclick = itemDoubleClick;
-				item.ondragover = itemDragOver;
-				item.ondrop = itemOnDrop;
-			});
-		// }
-	} else {
-		alert("No saved calendar found for this month in local storage.");
-	}
+	generateTable(year, month);
+
+	const cells = $$('.grid-item:not(.weekday)');
+
+	Object.keys(data).forEach(num => {
+		const allEventsOnDate = data[num];
+		const targetCell = cells[num];
+		
+		allEventsOnDate.forEach(event => {
+			const event = document.createElement("div");
+			event.className = `event ${event.class}`;
+			const group = document.createElement("div");
+			const title = document.createElement("span");
+			title.className = "top";
+			title.contentEditable = true;
+			title.textContent = event.title;
+			const body = document.createElement("span");
+			body.className = "bottom";
+			body.contentEditable = true;
+			body.textContent = event.body;
+
+			group.appendChild(top);
+			group.appendChild(bottom);
+			event.appendChild(group);
+			targetCell.appendChild(event);
+		});
+	});
 }
 
 function changeMonth(delta) {
@@ -264,24 +285,6 @@ function loadOrGenerateMonth() {
 function showHelpPopup() {
 	alert("Double-click on a date to add an event.\n\nDrag an event by it's handle to copy it to another date.\n\nRight-click on an event to change it's colour.")
 }
-
-function saveMonthJSONToLS() {
-	let data = {};
-	$$('.grid-item:not(.weekday)').forEach(item => {
-	    let num = parseInt(item.querySelector('span.num').textContent) -1;
-	
-	    data[num] = [];
-	
-	    item.querySelectorAll('.event').forEach(event => {
-	        data[num].push({
-	            title: event.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
-	            body: event.querySelector('.bottom').innerHTML.replaceAll("<br>", "\n"),
-	            class: event.className.split(' ')[1]
-	        });
-	    });
-	});
-}
-
 
 let d = new Date();
 year = d.getUTCFullYear();
