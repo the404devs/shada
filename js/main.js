@@ -242,11 +242,11 @@ function loadMonthFromLocalStorage(key) {
 			const title = document.createElement("span");
 			title.className = "top";
 			title.contentEditable = true;
-			title.innerHTML = evt.title.replaceAll("\n", "<br>");
+			title.innerHTML = evt.title.replaceAll("\\n", "<br>");
 			const body = document.createElement("span");
 			body.className = "bottom";
 			body.contentEditable = true;
-			body.innerHTML = evt.body.replaceAll("\n", "<br>");
+			body.innerHTML = evt.body.replaceAll("\\n", "<br>");
 
 			const deleteButton = document.createElement('span');
 			deleteButton.classList.add("text-button");
