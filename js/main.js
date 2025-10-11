@@ -233,18 +233,18 @@ function loadMonthFromLocalStorage(key) {
 		const allEventsOnDate = data[num];
 		const targetCell = cells[num];
 		
-		allEventsOnDate.forEach(event => {
+		allEventsOnDate.forEach(evt => {
 			const event = document.createElement("div");
-			event.className = `event ${event.class}`;
+			event.className = `event ${evt.class}`;
 			const group = document.createElement("div");
 			const title = document.createElement("span");
 			title.className = "top";
 			title.contentEditable = true;
-			title.textContent = event.title;
+			title.textContent = evt.title;
 			const body = document.createElement("span");
 			body.className = "bottom";
 			body.contentEditable = true;
-			body.textContent = event.body;
+			body.textContent = evt.body;
 
 			group.appendChild(top);
 			group.appendChild(bottom);
