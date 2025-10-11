@@ -780,6 +780,18 @@ img#logo {
 .color-swatch#black { background-color: var(--cal-black); }
 .color-swatch#lblue { background-color: var(--cal-lblue); }
 
+.event.blue { border-left-color: var(--cal-blue); }
+.event.red { border-left-color: var(--cal-red); }
+.event.green { border-left-color: var(--cal-green); }
+.event.yellow { border-left-color: var(--cal-yellow); }
+.event.orange { border-left-color: var(--cal-orange); }
+.event.purple { border-left-color: var(--cal-purple); }
+.event.pink { border-left-color: var(--cal-pink); }
+.event.teal { border-left-color: var(--cal-teal); }
+.event.grey { border-left-color: var(--cal-grey); }
+.event.black { border-left-color: var(--cal-black); }
+.event.lblue { border-left-color: var(--cal-lblue); }
+
 body > i {
     display: none!important;
 }
