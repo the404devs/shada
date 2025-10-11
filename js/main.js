@@ -262,6 +262,7 @@ function importJSON() {
 	const reader = new FileReader();
 	reader.onload = function() {
 		const data = JSON.parse(reader.result);
+		alert(`Loaded calendar-json-${data.year}-${data.month}`);
 		localStorage.setItem(`calendar-json-${data.year}-${data.month}`);
 		loadMonthFromLocalStorage(`calendar-json-${data.year}-${data.month}`);
 	}
