@@ -269,10 +269,10 @@ function loadMonthFromLocalStorage(key) {
 function changeMonth(delta) {
 	if ($$('.event').length > 0) {
 		saveMonthToLocalStorage();
-		queryLocalStorage();
 	} else {
 		localStorage.removeItem(`calendar-json-${year}-${month}`);
 	}
+	queryLocalStorage();
 	// if (confirm("Changing the month will clear the current calendar. Do you want to continue?")) {
 		month += delta;
 		if (month < 1) {
