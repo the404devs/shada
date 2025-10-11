@@ -186,38 +186,38 @@ function queryLocalStorage() {
 		if (key.startsWith('calendar-json-')) {
 			keys.push(key);
 		}
-		keys.sort((a,b) => {
-			let yA = parseInt(a.split('-')[2]);
-			let yB = parseInt(b.split('-')[2]);
-
-			if (yA > yB) { return 1 }
-			else if (yA < yB) { return -1 }
-			else {
-				let mA = parseInt(a.split('-')[3]);
-				let mB = parseInt(b.split('-')[3]);
-	
-				if (mA > mB) { return 1 }
-				else if (mA < mB) { return -1 }
-				else { return 0 }
-			}
-		});
-		
-		keys.forEach(key => {
-			const entry = document.createElement('a');
-			const icon = document.createElement('i');
-			icon.className = 'fas fa-calendar';
-			entry.appendChild(icon);
-			entry.className = 'saved-calendar-entry';
-			let monthName = MONTHS[key.split('-')[3] - 1];
-			let yearNum = key.split('-')[2];
-			entry.appendChild(document.createTextNode(`${monthName} ${yearNum}`));
-			entry.id = key;
-			entry.onclick = () => {
-				loadMonthFromLocalStorage(key);
-			};
-			list.appendChild(entry);
-		});
 	}
+	keys.sort((a,b) => {
+		let yA = parseInt(a.split('-')[2]);
+		let yB = parseInt(b.split('-')[2]);
+
+		if (yA > yB) { return 1 }
+		else if (yA < yB) { return -1 }
+		else {
+			let mA = parseInt(a.split('-')[3]);
+			let mB = parseInt(b.split('-')[3]);
+
+			if (mA > mB) { return 1 }
+			else if (mA < mB) { return -1 }
+			else { return 0 }
+		}
+	});
+	
+	keys.forEach(key => {
+		const entry = document.createElement('a');
+		const icon = document.createElement('i');
+		icon.className = 'fas fa-calendar';
+		entry.appendChild(icon);
+		entry.className = 'saved-calendar-entry';
+		let monthName = MONTHS[key.split('-')[3] - 1];
+		let yearNum = key.split('-')[2];
+		entry.appendChild(document.createTextNode(`${monthName} ${yearNum}`));
+		entry.id = key;
+		entry.onclick = () => {
+			loadMonthFromLocalStorage(key);
+		};
+		list.appendChild(entry);
+	});
 }
 
 function generateJSON() {
