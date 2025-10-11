@@ -134,11 +134,11 @@ function generateEvent(title, body, color) {
 	const top = document.createElement('span');
 	top.className = 'top';
 	top.contentEditable = true;
-	top.innerHTML = title.replaceAll("\\n", "<br>");
+	top.innerHTML = title.replaceAll("\n", "<br>");
 	const bottom = document.createElement('span');
 	bottom.className = 'bottom';
 	bottom.contentEditable = true;
-	bottom.innerHTML = body.replaceAll("\\n", "<br>");
+	bottom.innerHTML = body.replaceAll("\n", "<br>");
 
 	const deleteButton = document.createElement('span');
 	deleteButton.classList.add("text-button");
