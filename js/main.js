@@ -47,7 +47,8 @@ function eventRightClick(e) {
 
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
 		swatch.onclick = f => {
-			target.style.borderLeftColor = getComputedStyle(f.target).backgroundColor;
+			// target.style.borderLeftColor = getComputedStyle(f.target).backgroundColor;
+			target.className = `event ${target.id}`;
 			colorPickerPopup.style.visibility = 'hidden';
 		}
 	});
