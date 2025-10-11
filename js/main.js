@@ -239,6 +239,35 @@ function generateJSON() {
 	return data;
 }
 
+function exportJSON() {
+	const file = new Blob([generateJSON()], { type: "application/json" }); // Create a new Blob with the config.
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(file);
+    const fileName = `calendar-${year}-${month}`; // Ask the user for a name for the file, the default is the current timestamp.
+    if (fileName) {
+        a.download = fileName + ".json";
+        document.body.appendChild(a); // Append the link to the body.
+        a.click(); // Click it.
+        document.body.removeChild(a); //Remove it
+        URL.revokeObjectURL(a.href); //Get rid of the url to our file
+    }
+}
+
+function importTrigger() {
+    $("#import-button").click();
+}
+
+function importJSON() {
+	const file = document.querySelector('input[id=file-import]')['files'][0]; // Get the file from the hidden file input.
+	const reader = new FileReader();
+	reader.onload = function() {
+		const data = JSON.parse(reader.result);
+		localStorage.setItem(`calendar-json-${data.year}-${data.month}`);
+		loadMonthFromLocalStorage(`calendar-json-${data.year}-${data.month}`);
+	}
+	
+}
+
 function saveMonthToLocalStorage() {
 	let data = generateJSON();
 	localStorage.setItem(`calendar-json-${year}-${month}`, JSON.stringify(data));
@@ -258,12 +287,14 @@ function loadMonthFromLocalStorage(key) {
 	const cells = $$('.grid-item:not(.weekday)');
 
 	Object.keys(data).forEach(num => {
-		const allEventsOnDate = data[num];
-		const targetCell = cells[num];
-		
-		allEventsOnDate.forEach(event => {
-			targetCell.appendChild(generateEvent(event.title, event.body, event.class));
-		});
+		if (typeof data[num] === 'object') {
+			const allEventsOnDate = data[num];
+			const targetCell = cells[num];
+			
+			allEventsOnDate.forEach(event => {
+				targetCell.appendChild(generateEvent(event.title, event.body, event.class));
+			});
+		}
 	});
 }
 
