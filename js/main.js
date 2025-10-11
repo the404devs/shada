@@ -240,7 +240,7 @@ function generateJSON() {
 }
 
 function exportJSON() {
-	const file = new Blob([generateJSON()], { type: "application/json" }); // Create a new Blob with the config.
+	const file = new Blob([JSON.stringify(generateJSON())], { type: "application/json" }); // Create a new Blob with the config.
     const a = document.createElement("a");
     a.href = URL.createObjectURL(file);
     const fileName = `calendar-${year}-${month}`; // Ask the user for a name for the file, the default is the current timestamp.
