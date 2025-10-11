@@ -80,10 +80,20 @@ function itemOnDrop(e) {
 	dragElem = null;
 }
 
+function resetTable() {
+	const toby = $('div#render-target');
+	toby.innerHTML = '';
+	WEEKDAYS.forEach(weekday => {
+		const headerElem = document.createElement('div');
+		headerElem.className = 'grid-item weekday';
+		headerElem.textContent = weekday;
+		toby.appendChild(headerElem);
+	});
+}
+
 function generateTable(year, month) {
 	const toby = $('div#render-target');
 	
-
 	WEEKDAYS.forEach(weekday => {
 		const headerElem = document.createElement('div');
 		headerElem.className = 'grid-item weekday';
@@ -264,6 +274,7 @@ function importJSON() {
 		const data = JSON.parse(reader.result);
 		alert(`Loaded calendar-json-${data.year}-${data.month}`);
 		localStorage.setItem(`calendar-json-${data.year}-${data.month}`, JSON.stringify(data));
+		resetTable();
 		loadMonthFromLocalStorage(`calendar-json-${data.year}-${data.month}`);
 	}
 	reader.readAsText(file);	
@@ -322,7 +333,8 @@ function changeMonth(delta) {
 }
 
 function loadOrGenerateMonth() {
-	const potentialKey = `calendar-json-${year}-${month}`
+	const potentialKey = `calendar-json-${year}-${month}`;
+	resetTable();
 	if (localStorage[potentialKey]) {
 		loadMonthFromLocalStorage(potentialKey);
 	} else {
