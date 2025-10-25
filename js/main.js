@@ -108,7 +108,7 @@ function generateTable(year, month) {
 		num.textContent = date.getUTCDate();
 		elem.appendChild(num);
 
-		let index = date.getDay() + 2;
+		let index = date.getUTCDay() + 2;
 		if (index > 7) { index = 1 }
 
 		elem.style.gridColumnStart = index;
