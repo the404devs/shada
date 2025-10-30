@@ -198,12 +198,19 @@ span.text-button:hover {
 }
 
 .grid-item.legend > span.num {
-    pointer-events: default;
+    pointer-events: all;
     text-align: left;
     align-self: flex-start;
     font-style: italic;
     font-weight: 600;
+    font-size: 20px;
 }
+
+.grid-item.legend > .event > .group > .top {
+    font-size: 20px;
+    font-weight: normal;
+}
+
 
 .event {
     text-align: left;
