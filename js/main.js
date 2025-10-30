@@ -123,6 +123,23 @@ function generateTable(year, month) {
 	}
 }
 
+function addLegendBox() {
+	const legend = document.createElement('div');
+	legend.className = 'grid-item legend';
+	
+	const lastWeekday = $$('div.grid-item.weekday')[6];
+	const firstDay = $('div.grid-item:not(.weekday)');
+	const lastDay = $('div.grid-item:not(:has(~div.grid-item))');
+
+	if (firstDay.style.gridColumnStart != 1) {
+		legend.style.gridColumnStart = 1;
+		lastWeekday.after(legend);
+	} else {
+		legend.style.gridColumnStart = 7;
+		lastDay.after(legend);
+	}
+}
+
 function addEvent(parent) {
 	parent.appendChild(generateEvent("New Event", "Description", "red"));
 }
