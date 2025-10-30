@@ -197,6 +197,14 @@ span.text-button:hover {
     pointer-events: none;
 }
 
+.grid-item.legend > span.num {
+    pointer-events: default;
+    text-align: left;
+    align-self: flex-start;
+    font-style: italic;
+    font-weight: 600;
+}
+
 .event {
     text-align: left;
     /* border: 1px solid var(--cal-border); */
@@ -208,6 +216,10 @@ span.text-button:hover {
     position: relative;
     margin-bottom: 5px;
     justify-content: space-between;
+}
+
+.grid-item.legend > .event {
+    padding: 0;
 }
 
 .event.hideBorder {
