@@ -126,6 +126,16 @@ function generateTable(year, month) {
 function addLegendBox() {
 	const legend = document.createElement('div');
 	legend.className = 'grid-item legend';
+
+	const registered = document.createElement('span');
+	registered.className = 'num';
+	registered.textContent = 'Registered Programs:';
+	legend.appendChild(registered);
+
+	const dropin = document.createElement('span');
+	dropin.className = 'num';
+	dropin.textContent = 'Drop-In Programs:';
+	legend.appendChild(dropin);
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
 	const firstDay = $('div.grid-item:not(.weekday)');
