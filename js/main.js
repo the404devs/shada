@@ -121,6 +121,7 @@ function generateTable(year, month) {
 		toby.appendChild(elem);
 		date.setUTCDate(date.getUTCDate() + 1);
 	}
+	addLegendBox();
 }
 
 function addLegendBox() {
@@ -332,6 +333,7 @@ function loadMonthFromLocalStorage(key) {
 			});
 		}
 	});
+	addLegendBox();
 }
 
 function changeMonth(delta) {
