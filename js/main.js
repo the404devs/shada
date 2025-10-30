@@ -65,6 +65,12 @@ function itemDoubleClick(e) {
 	}
 }
 
+function legendDoubleClick(e) {
+	if (e.target === e.currentTarget) {
+		addLegend(e.currentTarget);
+	}
+}
+
 function itemDragOver(e) {
 	e.preventDefault();
 }
@@ -131,11 +137,13 @@ function addLegendBox() {
 	const registered = document.createElement('span');
 	registered.className = 'num';
 	registered.textContent = 'Registered Programs:';
+	registered.ondoubleclick = legendDoubleClick;
 	legend.appendChild(registered);
 
 	const dropin = document.createElement('span');
 	dropin.className = 'num';
 	dropin.textContent = 'Drop-In Programs:';
+	dropin.ondoubleclick = legendDoubleClick;
 	legend.appendChild(dropin);
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
@@ -155,6 +163,10 @@ function addEvent(parent) {
 	parent.appendChild(generateEvent("New Event", "Description", "red"));
 }
 
+function addLegend(parent) {
+	parent.appendChild(generateEvent("Event Type", "", "red"));
+}
+
 function generateEvent(title, body, color) {
 	const event = document.createElement("div");
 	event.className = `event ${color}`;
@@ -168,11 +180,14 @@ function generateEvent(title, body, color) {
 	top.className = 'top';
 	top.contentEditable = true;
 	top.innerHTML = title.replaceAll("\n", "<br>");
-	const bottom = document.createElement('span');
-	bottom.className = 'bottom';
-	bottom.contentEditable = true;
-	bottom.innerHTML = body.replaceAll("\n", "<br>");
 
+	if (body) {
+		const bottom = document.createElement('span');
+		bottom.className = 'bottom';
+		bottom.contentEditable = true;
+		bottom.innerHTML = body.replaceAll("\n", "<br>");
+	}
+	
 	const deleteButton = document.createElement('span');
 	deleteButton.classList.add("text-button");
 	deleteButton.innerHTML = closeTemplate.outerHTML;
