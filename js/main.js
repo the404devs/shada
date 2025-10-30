@@ -180,12 +180,14 @@ function generateEvent(title, body, color) {
 	top.className = 'top';
 	top.contentEditable = true;
 	top.innerHTML = title.replaceAll("\n", "<br>");
+	group.appendChild(top);
 
 	if (body) {
 		const bottom = document.createElement('span');
 		bottom.className = 'bottom';
 		bottom.contentEditable = true;
 		bottom.innerHTML = body.replaceAll("\n", "<br>");
+		group.appendChild(bottom);
 	}
 	
 	const deleteButton = document.createElement('span');
@@ -195,9 +197,6 @@ function generateEvent(title, body, color) {
 	deleteButton.setAttribute('data-html2canvas-ignore', 'true');
 	deleteButton.onclick = (e) => { event.remove(); saveMonthToLocalStorage(); };
 	event.appendChild(deleteButton);
-
-	group.appendChild(top);
-	group.appendChild(bottom);
 	event.oncontextmenu = eventRightClick;
 	event.ondragstart = eventDragStart;
 
