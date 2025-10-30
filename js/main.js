@@ -333,7 +333,6 @@ function loadMonthFromLocalStorage(key) {
 			});
 		}
 	});
-	addLegendBox();
 }
 
 function changeMonth(delta) {
