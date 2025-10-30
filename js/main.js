@@ -137,13 +137,13 @@ function addLegendBox() {
 	const registered = document.createElement('span');
 	registered.className = 'num';
 	registered.textContent = 'Registered Programs:';
-	registered.ondoubleclick = legendDoubleClick;
+	registered.ondblclick = legendDoubleClick;
 	legend.appendChild(registered);
 
 	const dropin = document.createElement('span');
 	dropin.className = 'num';
 	dropin.textContent = 'Drop-In Programs:';
-	dropin.ondoubleclick = legendDoubleClick;
+	dropin.ondblclick = legendDoubleClick;
 	legend.appendChild(dropin);
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
