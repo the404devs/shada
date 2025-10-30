@@ -164,7 +164,7 @@ function addEvent(parent) {
 }
 
 function addLegend(parent) {
-	parent.appendChild(generateEvent("Event Type", "", "red"));
+	parent.after(generateEvent("Event Type", "", "red"));
 }
 
 function generateEvent(title, body, color) {
