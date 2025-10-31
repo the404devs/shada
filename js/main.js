@@ -301,7 +301,7 @@ function legendGobbler(startElem) {
         }
         arr.push({
 			title: nextSibling.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
-			class: event.className.split(' ')[1]
+			class: nextSibling.className.split(' ')[1]
 		});
         nextSibling = nextSibling.nextElementSibling;
     }
