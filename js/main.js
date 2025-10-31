@@ -283,7 +283,29 @@ function generateJSON() {
 		data['year'] = year;
 		data['month'] = month;
 	});
+
+	const legend = $("div.grid-item.legend");
+
+	data['legend']['registered'] = eventGobbler($("div.grid-item.legend span.num:first-of-type"));
+	data['legend']['dropin'] = eventGobbler($("div.grid-item.legend span.num:last-of-type");
+	
 	return data;
+}
+
+function legendGobbler(startElem) {
+	let nextSibling = startElem.nextElementSibling;
+	let arr;
+    while (nextSibling) {
+        if (nextSibling.nodeName.toLowerCase() === "span") {
+            break; 
+        }
+        arr.push({
+			title: nextSibling.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
+			class: event.className.split(' ')[1]
+		});
+        nextSibling = nextSibling.nextElementSibling;
+    }
+	return arr;
 }
 
 function exportJSON() {
