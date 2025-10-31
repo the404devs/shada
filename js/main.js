@@ -286,15 +286,15 @@ function generateJSON() {
 
 	const legend = $("div.grid-item.legend");
 
-	data['legend']['registered'] = eventGobbler($("div.grid-item.legend span.num:first-of-type"));
-	data['legend']['dropin'] = eventGobbler($("div.grid-item.legend span.num:last-of-type"));
+	data['legend']['registered'] = legendGobbler($("div.grid-item.legend span.num:first-of-type"));
+	data['legend']['dropin'] = legendGobbler($("div.grid-item.legend span.num:last-of-type"));
 	
 	return data;
 }
 
 function legendGobbler(startElem) {
 	let nextSibling = startElem.nextElementSibling;
-	let arr;
+	let arr = [];
     while (nextSibling) {
         if (nextSibling.nodeName.toLowerCase() === "span") {
             break; 
