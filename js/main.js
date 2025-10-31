@@ -287,7 +287,7 @@ function generateJSON() {
 	const legend = $("div.grid-item.legend");
 
 	data['legend']['registered'] = eventGobbler($("div.grid-item.legend span.num:first-of-type"));
-	data['legend']['dropin'] = eventGobbler($("div.grid-item.legend span.num:last-of-type");
+	data['legend']['dropin'] = eventGobbler($("div.grid-item.legend span.num:last-of-type"));
 	
 	return data;
 }
