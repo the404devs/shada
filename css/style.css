@@ -225,10 +225,6 @@ span.text-button:hover {
     justify-content: space-between;
 }
 
-.grid-item.legend > .event {
-    padding: 0;
-}
-
 .event.hideBorder {
     border-top-width: 0;
     border-bottom-width: 0;
