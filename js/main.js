@@ -360,7 +360,7 @@ function loadMonthFromLocalStorage(key) {
 	const cells = $$('.grid-item:not(.weekday):not(.legend)');
 
 	Object.keys(data).forEach(num => {
-		if (typeof data[num] === 'object') {
+		if (typeof data[num] === 'object' && num != 'legend') {
 			const allEventsOnDate = data[num];
 			const targetCell = cells[num];
 			
