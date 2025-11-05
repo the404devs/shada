@@ -217,18 +217,19 @@ span.text-button:hover {
 .event {
     text-align: left;
     /* border: 1px solid var(--cal-border); */
-    border-left: 6px solid transparent;
-    border-bottom: 1px solid transparent;
-    border-radius: 0 0 0 8px;
+    border-left: 6px solid var(--cal-red);
+    /* border-bottom: 1px solid transparent; */
+    border-radius: 4px;
+    /* border-radius: 0 0 0 8px; */
     display: flex;
     flex-direction: row;
     padding-left: 5px;
     position: relative;
     margin-bottom: 5px;
     justify-content: space-between;
-    background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-red), transparent);
+    /* background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-red), transparent);
     background-origin: border-box;
-    background-clip: padding-box, border-box;
+    background-clip: padding-box, border-box; */
 }
 
 .event.hideBorder {
@@ -489,17 +490,17 @@ img#logo {
 .color-swatch#black { background-color: var(--cal-black); }
 .color-swatch#lblue { background-color: var(--cal-lblue); }
 
-.event.blue { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-blue), transparent); }
-.event.red { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-red), transparent); }
-.event.green { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-green), transparent); }
-.event.yellow { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-yellow), transparent); }
-.event.orange { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-orange), transparent); }
-.event.purple { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-purple), transparent); }
-.event.pink { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-pink), transparent); }
-.event.teal { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-teal), transparent); }
-.event.grey { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-grey), transparent); }
-.event.black { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-black), transparent); }
-.event.lblue { background-image: linear-gradient(var(--cal-bg-alt)), linear-gradient(to right, var(--cal-lblue), transparent); }
+.event.blue { border-left-color: var(--cal-blue); }
+.event.red { border-left-color: var(--cal-red); }
+.event.green { border-left-color: var(--cal-green); }
+.event.yellow { border-left-color: var(--cal-yellow); }
+.event.orange { border-left-color: var(--cal-orange); }
+.event.purple { border-left-color: var(--cal-purple); }
+.event.pink { border-left-color: var(--cal-pink); }
+.event.teal { border-left-color: var(--cal-teal); }
+.event.grey { border-left-color: var(--cal-grey); }
+.event.black { border-left-color: var(--cal-black); }
+.event.lblue { border-left-color: var(--cal-lblue); }
 
 body > i {
     display: none!important;
