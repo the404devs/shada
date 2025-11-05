@@ -153,7 +153,10 @@ function addLegendBox() {
 	if (firstDay.style.gridColumnStart != 1) {
 		legend.style.gridColumnStart = 1;
 		lastWeekday.after(legend);
-	} else {
+	} else if (lastDay.style.gridColumnStart === 7) {
+		legend.style.gridColumnStart = 1;
+		lastDay.after(legend);
+	} else  {
 		legend.style.gridColumnStart = 7;
 		lastDay.after(legend);
 	}
