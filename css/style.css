@@ -219,7 +219,7 @@ span.text-button:hover {
     /* border: 1px solid var(--cal-border); */
     border-left: 6px solid var(--cal-red);
     /* border-bottom: 1px solid transparent; */
-    border-radius: 4px;
+    /* border-radius: 4px; */
     /* border-radius: 0 0 0 8px; */
     display: flex;
     flex-direction: row;
