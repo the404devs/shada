@@ -369,16 +369,17 @@ function loadMonthFromLocalStorage(key) {
 			});
 		}
 	});
+	if (data.legend) {
+		const registeredHead = $("div.grid-item.legend span.num:first-of-type");
+		data.legend.registered.reverse().forEach(entry => {
+			registeredHead.after(generateEvent(entry.title, '', entry.class));
+		});
 	
-	const registeredHead = $("div.grid-item.legend span.num:first-of-type");
-	data.legend.registered.forEach(entry => {
-		registeredHead.after(generateEvent(entry.title, '', entry.class));
-	});
-
-	const dropinHead = $("div.grid-item.legend span.num:last-of-type");
-	data.legend.registered.forEach(entry => {
-		dropinHead.after(generateEvent(entry.title, '', entry.class));
-	});
+		const dropinHead = $("div.grid-item.legend span.num:last-of-type");
+		data.legend.dropin.reverse().forEach(entry => {
+			dropinHead.after(generateEvent(entry.title, '', entry.class));
+		});
+	}
 }
 
 function changeMonth(delta) {
