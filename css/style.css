@@ -243,6 +243,7 @@ span.text-button:hover {
     /* width: -webkit-fill-available; */
     cursor: text;
     font-family: 'Manrope', sans-serif;
+    text-wrap-mode: balance;
 }
 
 .event > .group {
