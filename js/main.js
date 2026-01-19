@@ -153,6 +153,10 @@ function addLegendBox() {
 	qrhead.className = 'num';
 	qrhead.textContent = 'Full Descriptions & Registration:';
 	qrbox.appendChild(qrhead);
+
+	const qrimg = document.createElement('img');
+	qrimg.src = './assets/makerspace-events-trans.png';
+	qrbox.appendChild(qrimg);
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
 	const firstDay = $('div.grid-item:not(.weekday)');
