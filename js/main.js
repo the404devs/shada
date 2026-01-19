@@ -151,7 +151,7 @@ function addLegendBox() {
 
 	const qrhead = document.createElement('span');
 	qrhead.className = 'num';
-	qrhead.textContent = 'Full Descriptions & Registration:';
+	qrhead.textContent = 'Program Descriptions & Registration Info:';
 	qrbox.appendChild(qrhead);
 
 	const qrimg = document.createElement('img');
