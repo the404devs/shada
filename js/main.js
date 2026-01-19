@@ -134,6 +134,9 @@ function addLegendBox() {
 	const legend = document.createElement('div');
 	legend.className = 'grid-item legend';
 
+	const qrbox = document.createElement('div');
+	qrbox.className = 'grid-item legend';
+
 	const registered = document.createElement('span');
 	registered.className = 'num';
 	registered.textContent = 'Registered Programs:';
@@ -145,20 +148,45 @@ function addLegendBox() {
 	dropin.textContent = 'Drop-In Programs:';
 	dropin.ondblclick = legendDoubleClick;
 	legend.appendChild(dropin);
+
+	const qrhead = document.createElement('span');
+	qrhead.className = 'num';
+	qrhead.textContent = 'Full Descriptions & Registration:';
+	qrbox.appendChild(qrhead);
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
 	const firstDay = $('div.grid-item:not(.weekday)');
 	const lastDay = $('div.grid-item:not(:has(~div.grid-item))');
 
 	if (firstDay.style.gridColumnStart != 1) {
+		// Legend at top left
 		legend.style.gridColumnStart = 1;
 		lastWeekday.after(legend);
+
+		if (firstDay.style.gridColumnStart != 2) {
+			qrbox.style.gridColumnStart == 2;
+			legend.after(qrbox);
+		} else {
+			console.log("unable to place qr at top");
+		}
 	} else if (lastDay.style.gridColumnStart === 7) {
+		// Legend at bottom left
 		legend.style.gridColumnStart = 1;
 		lastDay.after(legend);
-	} else  {
+
+		qrbox.style.gridGolumnStart = 2;
+		legend.after(qrbox);
+	} else {
+		// Legend at bottom right
 		legend.style.gridColumnStart = 7;
 		lastDay.after(legend);
+
+		if (lastDay.style.gridColumnStart != 6) {
+			qrbox.style.gridColumnStart = 6;
+			lastDay.after(qrbox);
+		} else {
+			console.log("unable to place qr at bottom");
+		}
 	}
 }
 
