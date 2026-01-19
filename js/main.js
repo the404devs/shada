@@ -135,7 +135,7 @@ function addLegendBox() {
 	legend.className = 'grid-item legend';
 
 	const qrbox = document.createElement('div');
-	qrbox.className = 'grid-item legend';
+	qrbox.className = 'grid-item qrbox';
 
 	const registered = document.createElement('span');
 	registered.className = 'num';
