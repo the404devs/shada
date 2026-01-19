@@ -167,7 +167,7 @@ function addLegendBox() {
 			qrbox.style.gridColumnStart == 2;
 			legend.after(qrbox);
 		} else {
-			let gcs = lastDay.gridColumnStart + 1;
+			let gcs = lastDay.style.gridColumnStart + 1;
 			if (gcs == 7) gcs = 1;
 			qrbox.style.gridColumnStart = gcs;
 			lastDay.after(qrbox);
