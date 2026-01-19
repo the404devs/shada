@@ -163,13 +163,11 @@ function addLegendBox() {
 		legend.style.gridColumnStart = 1;
 		lastWeekday.after(legend);
 
-		if (firstDay.style.gridColumnStart != 2) {
+		if (firstDay.style.gridColumnStart > 3) {
 			qrbox.style.gridColumnStart == 2;
 			legend.after(qrbox);
 		} else {
-			let gcs = parseInt(lastDay.style.gridColumnStart) + 1;
-			if (gcs == 7) gcs = 1;
-			qrbox.style.gridColumnStart = gcs;
+			qrbox.style.gridColumnStart = 7;
 			lastDay.after(qrbox);
 		}
 	} else if (lastDay.style.gridColumnStart === 7) {
