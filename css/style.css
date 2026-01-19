@@ -215,6 +215,11 @@ span.text-button:hover {
     font-weight: normal;
 }
 
+.grid-item.qrbox > img {
+    image-rendering: pixelated;
+    width: auto;
+}
+
 
 .event {
     text-align: left;
