@@ -300,7 +300,7 @@ function queryLocalStorage() {
 
 function generateJSON() {
 	let data = {};
-	$$('.grid-item:not(.weekday):not(.legend)').forEach(item => {
+	$$('.grid-item:not(.weekday):not(.legend):not(.qrbox)').forEach(item => {
 	    let num = parseInt(item.querySelector('span.num').textContent) - 1;
 	    data[num] = [];
 	    item.querySelectorAll('.event').forEach(event => {
