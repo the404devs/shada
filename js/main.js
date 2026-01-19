@@ -167,7 +167,10 @@ function addLegendBox() {
 			qrbox.style.gridColumnStart == 2;
 			legend.after(qrbox);
 		} else {
-			console.log("unable to place qr at top");
+			let gcs = lastDay.gridColumnStart + 1;
+			if (gcs == 7) gcs = 1;
+			qrbox.style.gridColumnStart = gcs;
+			lastDay.after(qrbox);
 		}
 	} else if (lastDay.style.gridColumnStart === 7) {
 		// Legend at bottom left
