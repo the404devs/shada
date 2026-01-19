@@ -388,7 +388,7 @@ function loadMonthFromLocalStorage(key) {
 
 	generateTable(year, month);
 
-	const cells = $$('.grid-item:not(.weekday):not(.legend)');
+	const cells = $$('.grid-item:not(.weekday):not(.legend):not(.qrbox)');
 
 	Object.keys(data).forEach(num => {
 		if (typeof data[num] === 'object' && num != 'legend') {
