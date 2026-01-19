@@ -197,7 +197,8 @@ span.text-button:hover {
     pointer-events: none;
 }
 
-.grid-item.legend > span.num {
+.grid-item.legend > span.num,
+.grid-item.qrbox > span.num {
     pointer-events: all;
     text-align: left;
     align-self: flex-start;
@@ -208,7 +209,8 @@ span.text-button:hover {
     padding-bottom: 5px;
 }
 
-.grid-item.legend > .event > .group > .top {
+.grid-item.legend > .event > .group > .top,
+.grid-item.qrbox > .event > .group > .top{
     font-size: 20px;
     font-weight: normal;
 }
