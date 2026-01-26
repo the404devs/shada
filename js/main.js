@@ -154,9 +154,17 @@ function addLegendBox() {
 	qrhead.textContent = 'Program Descriptions & Registration Info:';
 	qrbox.appendChild(qrhead);
 
-	const qrimg = document.createElement('img');
-	qrimg.src = './assets/makerspace-events-trans.png';
-	qrbox.appendChild(qrimg);
+	// const qrimg = document.createElement('img');
+	// qrimg.src = './assets/makerspace-events-trans.png';
+	// qrbox.appendChild(qrimg);
+
+	let startDate = new Date(`${year}-${month}-01`);
+	let endDate = new Date(`${year}-${month+1}-01`);
+	const qrimg = new QRCode(qrhead), {
+		text: `https://wsplibrary.bibliocommons.com/v2/events?q=Makerspace&startDate=${startDate}&endDate=${endDate}`,
+		width: 128,
+		height: 128
+	});
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
 	const firstDay = $('div.grid-item:not(.weekday)');
