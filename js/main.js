@@ -160,7 +160,7 @@ function addLegendBox() {
 	let startDate = `${year}-${month.toString().padStart(2,'0')}-01`;
 	let endDate = `${year}-${(month+1).toString().padStart(2,'0')}-01`;
 	if (month == 12) {endDate = `${year+1}-01-01`;}
-	const qrimg = new QRCode(qrimg, {
+	const qrcode = new QRCode(qrimg, {
 		text: `https://wsplibrary.bibliocommons.com/v2/events?q=Makerspace&startDate=${startDate}&endDate=${endDate}`,
 		width: 128,
 		height: 128,
