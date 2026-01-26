@@ -156,17 +156,17 @@ function addLegendBox() {
 
 	const qrimg = document.createElement('div');
 	// qrimg.src = './assets/makerspace-events-trans.png';
-	qrbox.appendChild(qrimg);
 
 	let startDate = `${year}-${month.toString().padStart(2,'0')}-01`;
 	let endDate = `${year}-${(month+1).toString().padStart(2,'0')}-01`;
-	if (month == 12) endDate = `${year+1}-01-01`;
+	if (month == 12) {endDate = `${year+1}-01-01`;}
 	const qrimg = new QRCode(qrimg, {
 		text: `https://wsplibrary.bibliocommons.com/v2/events?q=Makerspace&startDate=${startDate}&endDate=${endDate}`,
 		width: 128,
 		height: 128,
 		correctLevel: QRCode.CorrectLevel.L
 	});
+	qrbox.appendChild(qrimg);
 	
 	const lastWeekday = $$('div.grid-item.weekday')[6];
 	const firstDay = $('div.grid-item:not(.weekday)');
