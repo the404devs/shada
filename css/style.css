@@ -219,6 +219,7 @@ span.text-button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: -webkit-fill-available;
 }
 
 .grid-item.qrbox > div > img {
