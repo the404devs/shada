@@ -215,7 +215,13 @@ span.text-button:hover {
     font-weight: normal;
 }
 
-.grid-item.qrbox > img {
+.grid-item.qrbox > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-item.qrbox > div > img {
     image-rendering: pixelated;
     width: auto;
 }
