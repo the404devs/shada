@@ -164,6 +164,8 @@ function addLegendBox() {
 		text: `https://wsplibrary.bibliocommons.com/v2/events?q=Makerspace&startDate=${startDate}&endDate=${endDate}`,
 		width: 128,
 		height: 128,
+		colorLight: 'transparent',
+		colorDark: 'black',
 		correctLevel: QRCode.CorrectLevel.L
 	});
 	qrbox.appendChild(qrimg);
