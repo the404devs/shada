@@ -158,8 +158,9 @@ function addLegendBox() {
 	// qrimg.src = './assets/makerspace-events-trans.png';
 	// qrbox.appendChild(qrimg);
 
-	let startDate = new Date(`${year}-${month}-01`);
-	let endDate = new Date(`${year}-${month+1}-01`);
+	let startDate = `${year}-${month.toString().padStart(2,'0')}-01`;
+	let endDate = `${year}-${(month+1).toString().padStart(2,'0')}-01`;
+	if (month == 12) endDate = `${year+1}-01-01`;
 	const qrimg = new QRCode(qrhead, {
 		text: `https://wsplibrary.bibliocommons.com/v2/events?q=Makerspace&startDate=${startDate}&endDate=${endDate}`,
 		width: 128,
