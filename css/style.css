@@ -108,6 +108,21 @@ span.text-button:hover {
     color: white;
 }
 
+span.session-num {
+    position: absolute;
+    top: 0;
+    left: -6px;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 50% 50% 0;
+}
+
 .page-area {
     display: flex;
     flex-direction: column;
@@ -516,6 +531,18 @@ img#logo {
 .event.grey { border-left-color: var(--cal-grey); }
 .event.black { border-left-color: var(--cal-black); }
 .event.lblue { border-left-color: var(--cal-lblue); }
+
+.event.blue > span.session-num { background-color: var(--cal-lblue); }
+.event.red > span.session-num { background-color: var(--cal-red); }
+.event.green > span.session-num { background-color: var(--cal-green); }
+.event.yellow > span.session-num { background-color: var(--cal-yellow); }
+.event.orange > span.session-num { background-color: var(--cal-orange); color: var(--text-dark); }
+.event.purple > span.session-num { background-color: var(--cal-purple); }
+.event.pink > span.session-num { background-color: var(--cal-pink); }
+.event.teal > span.session-num { background-color: var(--cal-teal); }
+.event.grey > span.session-num { background-color: var(--cal-grey); }
+.event.black > span.session-num { background-color: var(--cal-black); }
+.event.lblue > span.session-num { background-color: var(--cal-lblue); }
 
 body > i {
     display: none!important;
