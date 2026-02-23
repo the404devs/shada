@@ -120,15 +120,19 @@ span.session-num {
     font-weight: bold;
     width: 20px;
     height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    line-height: 20px;
+    text-align: center;
     border-radius: 50%;
     visibility: visible;
 }
 
 span.session-num.invisible {
     visibility: hidden;
+}
+
+span.session-num.adjust {
+    line-height: 18px;
 }
 
 /* div.event:has(span.session-num:not(span.invisible)) {
