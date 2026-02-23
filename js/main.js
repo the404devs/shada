@@ -61,9 +61,9 @@ function eventRightClick(e) {
 	sessionInput.onwheel = f => {
 		f.preventDefault();
 		if (f.deltaY < 0) {
-			f.stepUp();
+			sessionInput.stepUp();
 		} else {
-			f.stepDown();
+			sessionInput.stepDown();
 		}
 		sessionRoundel.textContent = sessionInput.value;
 		if (sessionRoundel.textContent === "0" || sessionRoundel.textContent === "") {
