@@ -500,6 +500,7 @@ img#logo {
     /* display: none; */
     visibility: hidden;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    font-family: 'Manrope';
 }
 
 input.session-input {
@@ -510,6 +511,7 @@ input.session-input {
     font-weight: bold;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
     text-align: center;
+    margin-left: 5px;
 }
 
 .color-swatch {
