@@ -278,6 +278,9 @@ function generatePDF() {
 	$$('.session-num').forEach(roundel => {
 		roundel.classList.add('adjust');
 	});
+	$$('.group').forEach(group => {
+		group.classList.add('adjust');
+	});
 	$('.month-year').classList.add('adjust');
 	window.scrollTo(0, 0);
 	html2pdf($("#pdf-content"), {
@@ -291,6 +294,9 @@ function generatePDF() {
 		$('.page-area').classList.remove('borderless');
 		$$('.session-num').forEach(roundel => {
 			roundel.classList.remove('adjust');
+		});
+		$$('.group').forEach(group => {
+			group.classList.remove('adjust');
 		});
 		$('.month-year').classList.remove('adjust');
 	}, 3000);
