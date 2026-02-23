@@ -132,7 +132,7 @@ span.session-num.invisible {
 }
 
 span.session-num.adjust {
-    line-height: 15px;
+    line-height: 17px;
 }
 
 /* div.event:has(span.session-num:not(span.invisible)) {
