@@ -265,6 +265,9 @@ function generateEvent(title, body, color, session) {
 	const sessionRoundel = document.createElement('span');
 	sessionRoundel.classList.add('session-num');
 	sessionRoundel.textContent = session;
+	if (session === "0" || session === "" || session === null) {
+		sessionRoundel.classList.add("invisible");
+	}
 	event.appendChild(sessionRoundel);
 
 	return event;
