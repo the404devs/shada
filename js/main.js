@@ -46,8 +46,8 @@ function eventRightClick(e) {
 			colorPickerPopup.style.visibility = 'hidden';
 			sessionInput.onchange = null;
 			sessionInput.value = "";
+			document.onclick = null;
 		}
-		document.onclick = null;
 	}
 
 	sessionInput.onchange = f => {
