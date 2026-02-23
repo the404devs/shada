@@ -52,6 +52,11 @@ function eventRightClick(e) {
 
 	sessionInput.onchange = f => {
 		sessionRoundel.textContent = sessionInput.value;
+		if (sessionRoundel.textContent === "0" || sessionRoundel.textContent === "") {
+			sessionRoundel.classList.add("invisible");
+		} else {
+			sessionRoundel.classList.remove("invisible");
+		}
 	}
 
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
