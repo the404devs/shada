@@ -366,6 +366,10 @@ span.month-year {
     line-height: 68px;
 }
 
+span.month-year.adjust {
+    line-height: 64px;
+}
+
 img#logo {
     margin: 0 30px;
     height: 150px;
