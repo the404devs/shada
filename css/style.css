@@ -556,7 +556,7 @@ input.session-input {
 .event.black { border-left-color: var(--cal-black); }
 .event.lblue { border-left-color: var(--cal-lblue); }
 
-.event.blue > span.session-num { background-color: var(--cal-lblue); }
+.event.blue > span.session-num { background-color: var(--cal-blue); }
 .event.red > span.session-num { background-color: var(--cal-red); }
 .event.green > span.session-num { background-color: var(--cal-green); }
 .event.yellow > span.session-num { background-color: var(--cal-yellow); }
