@@ -278,6 +278,7 @@ function generatePDF() {
 	$$('.session-num').forEach(roundel => {
 		roundel.classList.add('adjust');
 	});
+	$('.month-year').classList.add('adjust');
 	window.scrollTo(0, 0);
 	html2pdf($("#pdf-content"), {
 		margin:       0,
@@ -291,6 +292,7 @@ function generatePDF() {
 		$$('.session-num').forEach(roundel => {
 			roundel.classList.remove('adjust');
 		});
+		$('.month-year').classList.remove('adjust');
 	}, 3000);
 }
 
