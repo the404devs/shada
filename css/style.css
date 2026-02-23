@@ -296,6 +296,10 @@ span.session-num.adjust {
     flex-direction: column;
     /* width: -webkit-fill-available; */
 }
+.event > .group.adjust {
+    transform: translateX(-2px);
+}
+
 .event span.top {
     font-weight: bold;
     font-size: 22px;
