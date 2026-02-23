@@ -275,9 +275,9 @@ function generateEvent(title, body, color, session) {
 
 function generatePDF() {
 	$('.page-area').classList.add('borderless');
-	// $$('.event').forEach(event => {
-	// 	event.classList.add('hideBorder');
-	// });
+	$$('.session-num').forEach(roundel => {
+		roundel.classList.add('adjust');
+	});
 	window.scrollTo(0, 0);
 	html2pdf($("#pdf-content"), {
 		margin:       0,
@@ -288,9 +288,9 @@ function generatePDF() {
 	});
 	setTimeout(() => {
 		$('.page-area').classList.remove('borderless');
-		// $$('.event').forEach(event => {
-		// 	event.classList.remove('hideBorder');
-		// });
+		$$('.session-num').forEach(roundel => {
+			roundel.classList.remove('adjust');
+		});
 	}, 3000);
 }
 
