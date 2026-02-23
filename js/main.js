@@ -222,14 +222,14 @@ function addLegendBox() {
 }
 
 function addEvent(parent) {
-	parent.appendChild(generateEvent("New Event", "Description", "red"));
+	parent.appendChild(generateEvent("New Event", "Description", "red", "0"));
 }
 
 function addLegend(parent) {
-	parent.after(generateEvent("Event Type", "", "red"));
+	parent.after(generateEvent("Event Type", "", "red", "0"));
 }
 
-function generateEvent(title, body, color) {
+function generateEvent(title, body, color, session) {
 	const event = document.createElement("div");
 	event.className = `event ${color}`;
 	event.draggable = true;
@@ -264,7 +264,7 @@ function generateEvent(title, body, color) {
 
 	const sessionRoundel = document.createElement('span');
 	sessionRoundel.classList.add('session-num');
-	sessionRoundel.textContent = 0;
+	sessionRoundel.textContent = session;
 	event.appendChild(sessionRoundel);
 
 	return event;
@@ -343,7 +343,8 @@ function generateJSON() {
 	        data[num].push({
 	            title: event.querySelector('.top').innerHTML.replaceAll("<br>", "\n"),
 	            body: event.querySelector('.bottom').innerHTML.replaceAll("<br>", "\n"),
-	            class: event.className.split(' ')[1]
+	            class: event.className.split(' ')[1],
+				session: event.querySelector('span.session-num').textContent
 	        });
 	    });
 
@@ -432,19 +433,19 @@ function loadMonthFromLocalStorage(key) {
 			const targetCell = cells[num];
 			
 			allEventsOnDate.forEach(event => {
-				targetCell.appendChild(generateEvent(event.title, event.body, event.class));
+				targetCell.appendChild(generateEvent(event.title, event.body, event.class, event.session));
 			});
 		}
 	});
 	if (data.legend) {
 		const registeredHead = $("div.grid-item.legend span.num:first-of-type");
 		data.legend.registered.reverse().forEach(entry => {
-			registeredHead.after(generateEvent(entry.title, '', entry.class));
+			registeredHead.after(generateEvent(entry.title, '', entry.class, ''));
 		});
 	
 		const dropinHead = $("div.grid-item.legend span.num:last-of-type");
 		data.legend.dropin.reverse().forEach(entry => {
-			dropinHead.after(generateEvent(entry.title, '', entry.class));
+			dropinHead.after(generateEvent(entry.title, '', entry.class, ''));
 		});
 	}
 }
