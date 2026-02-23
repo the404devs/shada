@@ -131,7 +131,7 @@ span.session-num.invisible {
 }
 
 div.event:has(span.session-num:not(span.invisible)) {
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
 .page-area {
@@ -500,6 +500,16 @@ img#logo {
     /* display: none; */
     visibility: hidden;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+input.session-input {
+    background: var(--cal-bg-alt);
+    border: 1px solid var(--cal-border);
+    border-radius: 8px;
+    font-family: 'Manrope';
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
 
 .color-swatch {
