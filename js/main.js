@@ -37,16 +37,17 @@ function eventRightClick(e) {
 		colorPickerPopup.style.top = e.pageY + 'px';
 	}
 	colorPickerPopup.style.visibility = 'visible';
+	sessionInput.value = parseInt(sessionRoundel.textContent);
 
 	// Hide the popup if clicking outside of it
 	document.onclick = f => {
 		// console.log(f.target);
 		if (!f.target.classList.contains('color-swatch') && !f.target.classList.contains('session-input')) {
 			colorPickerPopup.style.visibility = 'hidden';
+			sessionInput.onchange = null;
+			sessionInput.value = "";
 		}
 		document.onclick = null;
-		sessionInput.onchange = null;
-		sessionInput.value = "";
 	}
 
 	sessionInput.onchange = f => {
