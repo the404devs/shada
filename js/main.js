@@ -40,6 +40,7 @@ function eventRightClick(e) {
 
 	// Hide the popup if clicking outside of it
 	document.onclick = f => {
+		console.log(f.target);
 		if (!f.target.classList.contains('color-swatch') && !f.target.classList.contains('session-num')) {
 			colorPickerPopup.style.visibility = 'hidden';
 		}
@@ -49,7 +50,7 @@ function eventRightClick(e) {
 	}
 
 	sessionInput.onchange = f => {
-		sessionRoundel.textContent = f.value;
+		sessionRoundel.textContent = sessionInput.value;
 	}
 
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
