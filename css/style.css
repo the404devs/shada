@@ -172,7 +172,7 @@ span.session-num.invisible {
     text-align: center;
     overflow: hidden;
     font-family: 'Manrope', sans-serif;
-    padding: 5px 5px 15px 8px;
+    padding: 5px 8px 15px 8px;
     cursor: pointer;
     min-height: 220px;
     transition: 0.2s ease all;
