@@ -113,7 +113,7 @@ span.session-num {
     top: 0;
     left: -6px;
     color: var(--text);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     width: 20px;
     height: 20px;
@@ -121,6 +121,11 @@ span.session-num {
     align-items: center;
     justify-content: center;
     border-radius: 0 50% 50% 0;
+    visibility: visible;
+}
+
+span.session-num.invisible {
+    visibility: hidden;
 }
 
 .page-area {
