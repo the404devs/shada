@@ -108,6 +108,8 @@ span.text-button:hover {
     color: white;
 }
 
+
+
 span.session-num {
     position: absolute;
     top: 0;
@@ -126,6 +128,10 @@ span.session-num {
 
 span.session-num.invisible {
     visibility: hidden;
+}
+
+div.event:has(span.session-num:not(span.invisible)) {
+    padding-top: 10px;
 }
 
 .page-area {
