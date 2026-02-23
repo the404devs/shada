@@ -16,6 +16,8 @@ function eventRightClick(e) {
 
 
 	colorPickerPopup = $("#color-picker-popup");
+	sessionInput = $("#session-input");
+	sessionRoundel = target.querySelector("span.session-num");
 
 	// Ensure the popup is within the viewport
 	const popupWidth = 222; // Approximate width of the popup
@@ -42,8 +44,13 @@ function eventRightClick(e) {
 			colorPickerPopup.style.visibility = 'hidden';
 		}
 		document.onclick = null;
+		sessionInput.onchange = null;
+		sessionInput.value = "";
 	}
 
+	sessionInput.onchange = f => {
+		sessionRoundel.textContent = f.value;
+	}
 
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
 		swatch.onclick = f => {
@@ -247,6 +254,10 @@ function generateEvent(title, body, color) {
 	event.appendChild(deleteButton);
 	event.oncontextmenu = eventRightClick;
 	event.ondragstart = eventDragStart;
+
+	const sessionRoundel = document.createElement('span');
+	sessionRoundel.classList.add('session-num');
+	event.appendChild(sessionRoundel);
 
 	return event;
 }
