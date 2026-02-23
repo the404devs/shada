@@ -359,6 +359,7 @@ span.month-year {
     flex-basis: 30%;
     height: 68px;
     border: 1px solid red;
+    line-height: 68px;
 }
 
 img#logo {
