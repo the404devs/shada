@@ -40,7 +40,7 @@ function eventRightClick(e) {
 
 	// Hide the popup if clicking outside of it
 	document.onclick = f => {
-		if (!f.target.classList.contains('color-swatch') and !f.target.classList.contains('session-num')) {
+		if (!f.target.classList.contains('color-swatch') && !f.target.classList.contains('session-num')) {
 			colorPickerPopup.style.visibility = 'hidden';
 		}
 		document.onclick = null;
