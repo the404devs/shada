@@ -58,6 +58,20 @@ function eventRightClick(e) {
 			sessionRoundel.classList.remove("invisible");
 		}
 	}
+	sessionInput.onwheel = f => {
+		f.preventDefault();
+		if (f.deltaY < 0) {
+			f.stepUp();
+		} else {
+			f.stepDown();
+		}
+		sessionRoundel.textContent = sessionInput.value;
+		if (sessionRoundel.textContent === "0" || sessionRoundel.textContent === "") {
+			sessionRoundel.classList.add("invisible");
+		} else {
+			sessionRoundel.classList.remove("invisible");
+		}
+	}
 
 	$$('#color-picker-popup .color-swatch').forEach(swatch => {
 		swatch.onclick = f => {
