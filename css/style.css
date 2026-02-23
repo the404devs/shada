@@ -112,8 +112,8 @@ span.text-button:hover {
 
 span.session-num {
     position: absolute;
-    top: 0;
-    left: -6px;
+    top: -1px;
+    left: -13px;
     color: var(--text);
     font-size: 16px;
     font-weight: bold;
@@ -130,9 +130,9 @@ span.session-num.invisible {
     visibility: hidden;
 }
 
-div.event:has(span.session-num:not(span.invisible)) {
+/* div.event:has(span.session-num:not(span.invisible)) {
     padding-top: 15px;
-}
+} */
 
 .page-area {
     display: flex;
@@ -172,7 +172,7 @@ div.event:has(span.session-num:not(span.invisible)) {
     text-align: center;
     overflow: hidden;
     font-family: 'Manrope', sans-serif;
-    padding: 5px 5px 15px 5px;
+    padding: 5px 5px 15px 8px;
     cursor: pointer;
     min-height: 220px;
     transition: 0.2s ease all;
@@ -263,7 +263,7 @@ div.event:has(span.session-num:not(span.invisible)) {
     /* border-radius: 0 0 0 8px; */
     display: flex;
     flex-direction: row;
-    padding-left: 5px;
+    padding-left: 8px;
     position: relative;
     margin-bottom: 5px;
     justify-content: space-between;
