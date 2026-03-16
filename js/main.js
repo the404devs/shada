@@ -106,11 +106,16 @@ function itemDragOver(e) {
 function itemOnDrop(e) {
 	e.preventDefault();
 	if (dragElem === null || e.target === dragElem || e.target.className != "grid-item") { return; }
-	const clone = dragElem.cloneNode(true);
-	clone.oncontextmenu = eventRightClick;
-	clone.ondragstart = eventDragStart;
-	clone.querySelector('.text-button').onclick = e => { clone.remove() };
-	e.target.appendChild(clone);
+	
+	if (dragElem.parentElement === e.target) {
+		e.target.appendChild(dragElem);
+	} else {
+		const clone = dragElem.cloneNode(true);
+		clone.oncontextmenu = eventRightClick;
+		clone.ondragstart = eventDragStart;
+		clone.querySelector('.text-button').onclick = e => { clone.remove() };
+		e.target.appendChild(clone);
+	}
 	dragElem = null;
 }
 
